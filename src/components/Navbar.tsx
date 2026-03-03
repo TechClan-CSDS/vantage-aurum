@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import aurumIcon from "@/assets/aurum-icon.png";
+import aurum from "@/assets/aurum-logo.png";
 
 const links = ["Tracks", "Prizes", "Format", "Evaluation", "Venue"];
 
@@ -17,7 +17,7 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
         <a href="#" className="flex items-center">
-          <img src={aurumIcon} alt="Aurum" className="h-10 w-auto" />
+          <img src={aurum} alt="Aurum" className="h-10 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-1">

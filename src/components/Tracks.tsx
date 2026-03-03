@@ -1,84 +1,67 @@
 import { motion } from "framer-motion";
-import { Bot, Landmark, Blocks, Lightbulb, Cpu } from "lucide-react";
+import { Cpu } from "lucide-react";
 
 const tracks = [
   {
-    icon: Landmark,
+    num: "01",
     title: "Fintech",
-    description: "Build intelligent financial systems with AI agents for risk analysis, fraud detection, automated trading, and personalized banking.",
+    description: "Intelligent financial systems — risk analysis, fraud detection, automated trading, personalized banking. AI agents making real financial decisions.",
   },
   {
-    icon: Bot,
+    num: "02",
     title: "AI/ML & Data Science",
-    description: "Create autonomous AI-driven pipelines, intelligent data processing systems, and self-improving ML workflows.",
+    description: "Autonomous pipelines, self-improving ML workflows, intelligent data processing. Push the boundaries of what machines can figure out on their own.",
   },
   {
-    icon: Blocks,
+    num: "03",
     title: "Blockchain",
-    description: "Develop decentralized intelligent systems with AI agents for smart contract automation, DeFi, and on-chain analytics.",
+    description: "Decentralized intelligence — AI agents for smart contract automation, DeFi protocols, and on-chain analytics that actually work.",
   },
   {
-    icon: Lightbulb,
+    num: "04",
     title: "Open Innovation",
-    description: "Solve real-world problems across any domain with AI agent-based approaches. Healthcare, education, sustainability — your call.",
+    description: "Healthcare, education, sustainability, anything else. Pick a real problem, solve it with AI agents. No domain restrictions.",
   },
 ];
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.15 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
 const Tracks = () => {
   return (
-    <section id="tracks" className="relative py-24 md:py-32 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="tracks" className="relative py-20 md:py-28 px-4">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gold/10 border border-gold/20 rounded-full mb-6">
-            <Cpu className="w-3.5 h-3.5 text-gold" />
-            <span className="text-gold text-xs tracking-widest uppercase font-body">AI Agents Required</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/8 border border-gold/15 rounded-full mb-5">
+            <Cpu className="w-3 h-3 text-gold/70" />
+            <span className="text-gold/70 text-[11px] tracking-[0.2em] uppercase font-body">AI agents required in every track</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-gradient-gold mb-4">Tracks</h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Every track demands meaningful AI agent integration. Autonomous or semi-autonomous decision-making is not optional — it's foundational.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
+            Four tracks,<br />
+            <span className="text-gradient-gold">one rule.</span>
+          </h2>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-4 md:gap-6"
-        >
-          {tracks.map((track) => (
+        <div className="space-y-3">
+          {tracks.map((track, i) => (
             <motion.div
               key={track.title}
-              variants={item}
-              className="group relative p-6 md:p-8 bg-card border border-border rounded-xl hover:border-gold/30 hover:glow-gold-sm transition-all duration-500"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="group flex gap-5 p-5 md:p-6 border border-border/60 rounded-xl hover:border-gold/25 hover:bg-card/50 transition-all duration-400"
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-gold/10 rounded-lg group-hover:bg-gold/20 transition-colors">
-                  <track.icon className="w-6 h-6 text-gold" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-display font-semibold text-foreground mb-2">{track.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{track.description}</p>
-                </div>
+              <span className="text-gold/30 font-display font-bold text-sm mt-1 shrink-0">{track.num}</span>
+              <div>
+                <h3 className="text-lg font-display font-semibold text-foreground mb-1.5 group-hover:text-gold transition-colors">{track.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{track.description}</p>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

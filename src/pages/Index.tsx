@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
 import Tracks from "@/components/Tracks";
 import Prizes from "@/components/Prizes";
 import Format from "@/components/Format";
@@ -14,14 +13,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <Hero />
-      <Marquee />
       <Tracks />
       <Prizes />
       <Format />
       <Evaluation />
       <CTA />
       <Venue />
-      <Marquee />
       <Footer />
     </div>
   );

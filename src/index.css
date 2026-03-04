@@ -124,3 +124,7 @@ nav {
 .text-gold {
   text-shadow: 0 0 10px rgba(212,175,55,0.25);
 }
+
+html {
+  scroll-behavior: smooth;
+}

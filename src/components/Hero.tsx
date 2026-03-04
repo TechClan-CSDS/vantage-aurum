@@ -101,7 +101,7 @@ const Countdown = () => {
 
   return (
     <div className="text-gold font-mono font-bold text-xl md:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(212,175,55,0.35)]">
-      {pad(time.d)} : {pad(time.h)} : {pad(time.m)} : {pad(time.s)}
+      {time.d} D : {time.h} H : {time.m} M : {time.s} S
     </div>
   );
 };
@@ -114,7 +114,6 @@ const Hero = () => {
   const [devfolioLoaded, setDevfolioLoaded] = useState(false);
   const [devfolioError, setDevfolioError] = useState(false);
 
-  // Load Devfolio SDK with better error handling
   useEffect(() => {
     // Check if script already exists
     if (document.querySelector('script[src="https://apply.devfolio.co/v2/sdk.js"]')) {
@@ -155,7 +154,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20">
 
       <StaticBinaryRain />
 

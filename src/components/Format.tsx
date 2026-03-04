@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
-import { Clock, Users, Wifi, Monitor } from "lucide-react";
+import { Clock, Users, Wifi } from "lucide-react";
 
 const stats = [
   { icon: Clock, value: "24 HRS", label: "Straight" },
   { icon: Users, value: "60", label: "Teams Max" },
   { icon: Wifi, value: "OFFLINE", label: "In-Person" },
-  { icon: Monitor, value: "DEVFOLIO", label: "Platform" },
 ];
 
 const submissions = [
@@ -37,14 +36,12 @@ const Format = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 border-2 border-gold/20 mb-10"
+          className="grid grid-cols-3 border-2 border-gold/20 mb-10"
         >
           {stats.map((s, i) => (
             <div
               key={s.label}
-              className={`p-6 text-center ${i < 3 ? 'border-r-2 border-gold/20' : ''} ${
-                i < 2 ? 'border-b-2 md:border-b-0 border-gold/20' : ''
-              }`}
+              className={`p-6 text-center ${i < 2 ? 'border-r-2 border-gold/20' : ''}`}
             >
               <s.icon className="w-5 h-5 text-gold mx-auto mb-2" />
               <p className="text-xl md:text-2xl font-display font-black text-foreground">{s.value}</p>

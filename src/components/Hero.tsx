@@ -5,8 +5,40 @@ import aurumLogo from "@/assets/aurum-logo.png";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
-      {/* Radial gold glow */}
-      <div className="absolute inset-0 bg-gradient-gold-radial opacity-60" />
+      {/* Aurora glow effect — gold version of the reference */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Top arc glow */}
+        <div
+          className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[120%] h-[400px]"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 50% 100%, hsl(43 90% 55% / 0.25) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 30% 80%, hsl(35 80% 45% / 0.15) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 70% 80%, hsl(50 90% 60% / 0.15) 0%, transparent 60%)
+            `,
+            filter: "blur(40px)",
+          }}
+        />
+        {/* Bottom reflection */}
+        <div
+          className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[100%] h-[300px]"
+          style={{
+            background: `
+              radial-gradient(ellipse 70% 60% at 50% 0%, hsl(43 80% 55% / 0.12) 0%, transparent 70%)
+            `,
+            filter: "blur(60px)",
+          }}
+        />
+        {/* Central bright line */}
+        <div
+          className="absolute top-[42%] left-1/2 -translate-x-1/2 w-[80%] h-[2px]"
+          style={{
+            background: "linear-gradient(90deg, transparent, hsl(43 90% 70% / 0.4), hsl(43 80% 55% / 0.6), hsl(43 90% 70% / 0.4), transparent)",
+            filter: "blur(1px)",
+            boxShadow: "0 0 30px 10px hsl(43 80% 55% / 0.15)",
+          }}
+        />
+      </div>
 
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto">
         {/* Date badge */}
@@ -21,7 +53,7 @@ const Hero = () => {
           </span>
         </motion.div>
 
-        {/* Big logo — no border, immersive */}
+        {/* Big logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -31,11 +63,11 @@ const Hero = () => {
           <img
             src={aurumLogo}
             alt="Aurum — the gold standard hackathon"
-            className="w-72 md:w-[28rem] lg:w-[34rem] mx-auto drop-shadow-[0_0_60px_hsl(43_80%_55%/0.3)]"
+            className="w-72 md:w-[28rem] lg:w-[34rem] mx-auto"
           />
         </motion.div>
 
-        {/* Tagline — direct, no box */}
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +79,7 @@ const Hero = () => {
           <span className="text-gold font-semibold">Build real systems. Ship or go home.</span>
         </motion.p>
 
-        {/* CTA */}
+        {/* CTA — no shadows */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,7 +90,7 @@ const Hero = () => {
             href="https://devfolio.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gold text-primary-foreground font-display font-black text-base uppercase tracking-wider border-2 border-gold-dark hover:bg-gold-light transition-all duration-200 shadow-[4px_4px_0px_0px_hsl(43_70%_35%)]"
+            className="group inline-flex items-center gap-3 px-8 py-4 bg-gold text-primary-foreground font-display font-black text-base uppercase tracking-wider border-2 border-gold-dark hover:bg-gold-light transition-all duration-200"
           >
             Apply on Devfolio
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -71,7 +103,7 @@ const Hero = () => {
           </a>
         </motion.div>
 
-        {/* Stats row */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

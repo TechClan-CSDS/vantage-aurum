@@ -4,52 +4,52 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "What is Aurum?",
-    a: "Aurum (Vantage) is the first official hackathon organized by the CSE (Data Science) Department at DSCE, Bangalore. It's a 24-hour offline hackathon focused on AI agent-based workflows.",
+    q: "Where will Aurum take place?",
+    a: "Aurum will be held at Dayananda Sagar College of Engineering (DSCE), located at Shavige Malleshwara Hills, 91st Main Rd, 1st Stage, Kumaraswamy Layout, Bengaluru, Karnataka 560111.",
   },
   {
-    q: "Who can participate?",
-    a: "Aurum is open to all college students passionate about AI-driven systems, applied data science, and emerging technologies.",
+    q: "What exactly is Aurum?",
+    a: "Aurum is a 24-hour offline hackathon organized by the CSE (Data Science) Department at DSCE, Bangalore. The event focuses on building real, working systems that integrate AI agent-driven workflows.",
   },
   {
-    q: "How do I register?",
-    a: "Registration is done through Devfolio. Click the 'Apply on Devfolio' button on our website to start your application.",
+    q: "Who is eligible to participate?",
+    a: "Aurum is open to undergraduate and postgraduate college students from any institution who are interested in building intelligent systems, working with data, and solving real-world problems.",
   },
   {
-    q: "What is the maximum team size?",
-    a: "Each team can have a maximum of 4 members. No solo participation — teamwork is essential.",
+    q: "How do I apply?",
+    a: "Applications are submitted through Devfolio. You can apply by clicking the 'Apply via Devfolio' button on the website and submitting your project idea during registration.",
   },
   {
-    q: "Is there a registration fee?",
-    a: "No. Participation in Aurum is completely free.",
+    q: "How are teams selected?",
+    a: "Teams are shortlisted based on the strength of their application, the originality of the idea they propose, and the feasibility of building a working prototype during the hackathon.",
   },
   {
-    q: "What should I bring?",
-    a: "Bring your laptop, charger, student ID, and any other devices you need. We recommend carrying a mobile hotspot as backup.",
+    q: "What is the team size limit?",
+    a: "Teams can have up to four members. Working in teams encourages collaboration and faster execution during the 24-hour build window.",
+  },
+  {
+    q: "Is there any participation fee?",
+    a: "No. Aurum is completely free to participate in for all selected teams.",
+  },
+  {
+    q: "What tracks are available?",
+    a: "Aurum features four tracks: Fintech, AI/ML & Data Science, Blockchain, and Open Innovation. Regardless of track, every project must incorporate meaningful AI-driven intelligence or agent-based workflows.",
+  },
+  {
+    q: "What should participants bring?",
+    a: "Participants should bring their laptop, charger, student ID, and any hardware they plan to use. Carrying a personal hotspot is recommended as a backup internet option.",
   },
   {
     q: "Will food and accommodation be provided?",
-    a: "Yes, all participants will be provided with meals and comfortable accommodation throughout the 24-hour event.",
+    a: "Yes. Meals, refreshments, and overnight accommodation will be provided for all participants throughout the 24-hour hackathon.",
   },
   {
-    q: "Will Wi-Fi be provided?",
-    a: "We will provide high-speed Wi-Fi, but we strongly recommend carrying a mobile hotspot as backup for uninterrupted participation.",
+    q: "Will internet access be available?",
+    a: "High-speed Wi-Fi will be available at the venue. However, participants are advised to carry a mobile hotspot for backup connectivity.",
   },
   {
-    q: "What does Open Innovation mean?",
-    a: "Open Innovation allows projects that don't fit neatly into Fintech, AI/ML, or Blockchain tracks — but every project must still integrate AI agent-based workflows.",
-  },
-  {
-    q: "What is the selection criteria?",
-    a: "Teams are selected based on creativity, innovation, and feasibility of project ideas submitted during registration.",
-  },
-  {
-    q: "Is the hackathon offline?",
-    a: "Yes, Aurum is a fully offline hackathon held at DSCE, Kumaraswamy Layout, Bangalore.",
-  },
-  {
-    q: "Is there a code of conduct?",
-    a: "Yes. All participants must follow our code of conduct promoting a respectful and inclusive environment.",
+    q: "Is the event fully offline?",
+    a: "Yes. Aurum is an in-person hackathon. All selected teams will build and present their projects on campus at DSCE during the event.",
   },
 ];
 
@@ -65,13 +65,19 @@ const FAQ = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <span className="text-gold font-mono text-xs uppercase tracking-[0.3em]">Got Questions?</span>
-          <h2 className="text-4xl md:text-5xl font-display font-black uppercase mt-2 text-foreground">FAQ</h2>
+          <span className="text-gold font-mono text-xs uppercase tracking-[0.3em]">
+            Got Questions?
+          </span>
+
+          <h2 className="text-4xl md:text-5xl font-display font-black uppercase mt-2 text-foreground">
+            FAQ
+          </h2>
         </motion.div>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
+
             return (
               <motion.div
                 key={i}
@@ -88,13 +94,19 @@ const FAQ = () => {
                   className="w-full text-left px-5 py-4 md:px-6 md:py-5 font-display font-bold text-sm md:text-base uppercase tracking-wide flex justify-between items-center text-foreground focus:outline-none"
                 >
                   <span className="mr-4">{faq.q}</span>
+
                   <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 text-gold transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    className={`w-5 h-5 flex-shrink-0 text-gold transition-transform duration-200 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
+
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+                    isOpen
+                      ? "max-h-[300px] opacity-100"
+                      : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="px-5 pb-5 md:px-6 md:pb-6 pt-0 text-foreground/70 text-sm leading-relaxed font-body border-t border-gold/10">

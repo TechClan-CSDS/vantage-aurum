@@ -65,9 +65,6 @@ const Format = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground mt-5 font-mono border-t border-border/40 pt-4">
-            → Working intelligence, not conceptual prototypes.
-          </p>
         </motion.div>
       </div>
     </section>

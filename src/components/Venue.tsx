@@ -17,7 +17,7 @@ const Venue = () => {
           <div className="inline-flex items-center gap-3 px-4 py-2 border-2 border-gold/30 bg-gold/5">
             <MapPin className="w-4 h-4 text-gold" />
             <p className="text-sm text-foreground/80 font-body">
-              DSCE · Kumaraswamy Layout, 91st Cross · Bangalore
+              Dayananda Sagar College of Engineering · Shavige Malleshwara Hills · 91st Main Rd, 1st Stage · Kumaraswamy Layout · Bengaluru 560111
             </p>
           </div>
         </motion.div>

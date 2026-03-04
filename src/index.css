@@ -115,3 +115,12 @@
   pointer-events: none;
   z-index: 0;
 }
+
+nav {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+}
+
+.text-gold {
+  text-shadow: 0 0 10px rgba(212,175,55,0.25);
+}

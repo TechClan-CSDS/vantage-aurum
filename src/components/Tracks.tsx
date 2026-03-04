@@ -34,13 +34,9 @@ const Tracks = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 border-2 border-gold/40 bg-gold/10 mb-6">
-            <Cpu className="w-4 h-4 text-gold" />
-            <span className="text-gold font-display font-bold text-xs tracking-[0.2em] uppercase">AI agents required in every track</span>
-          </div>
           <h2 className="text-4xl md:text-6xl font-display font-black text-foreground uppercase tracking-tight">
             Four tracks,<br />
-            <span className="text-gradient-gold">one rule.</span>
+            <span className="text-gradient-gold">AI-Native Projects.</span>
           </h2>
         </motion.div>
 
@@ -53,7 +49,7 @@ const Tracks = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className={`group p-6 md:p-8 hover:bg-gold/5 transition-colors duration-300 ${
-                i < 2 ? 'border-b-2 border-gold/20' : ''
+                i !== tracks.length - 1 ? 'border-b border-gold/20' : ''
               } ${i % 2 === 0 ? 'md:border-r-2 md:border-gold/20' : ''}`}
             >
               <span className="text-gold/40 font-mono text-xs">{track.num}</span>

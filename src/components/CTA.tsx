@@ -16,7 +16,7 @@ const CTA = () => {
             <span className="text-gradient-gold">worth shipping.</span>
           </h2>
           <p className="text-muted-foreground text-sm mb-8 max-w-md mx-auto font-mono">
-            Applications open on Devfolio. Limited spots. Don't wait.
+            Applications open on Devfolio!
           </p>
           <a
             href="https://devfolio.co"
@@ -24,7 +24,7 @@ const CTA = () => {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 px-10 py-4 bg-gold text-primary-foreground font-display font-black text-base uppercase tracking-wider border-2 border-gold-dark hover:bg-gold-light transition-all duration-200"
           >
-            Apply on Devfolio
+            Apply via Devfolio
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
         </div>

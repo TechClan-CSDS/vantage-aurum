@@ -216,7 +216,7 @@ const Hero = () => {
           {!devfolioError ? (
             <div
               className="apply-button"
-              data-hackathon-slug="aurum2026" // Replace with your actual hackathon slug
+              data-hackathon-slug="aurum26" 
               data-button-theme="light"
               style={{ height: "44px", width: "312px" }}
             />
@@ -265,36 +265,6 @@ const Hero = () => {
               </div>
             </div>
           ))}
-        </motion.div>
-
-        {/* Sponsors Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-8 pt-8 border-t border-gold/10"
-        >
-          <p className="text-muted-foreground text-xs font-mono uppercase tracking-wider mb-6">
-            Powered By
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {/* Devfolio Logo */}
-            <a
-              href="https://devfolio.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-70 hover:opacity-100 transition-opacity duration-200"
-            >
-              <img
-                src={devfoliologo}
-                alt="Devfolio"
-                className="h-8 md:h-10 w-auto"
-              />
-            </a>
-            
-            {/* Placeholder for other sponsors - add more as needed */}
-            {/* <img src="/path/to/sponsor-logo.png" alt="Sponsor" className="h-8 md:h-10 w-auto opacity-70 hover:opacity-100 transition-opacity" /> */}
-          </div>
         </motion.div>
 
       </div>

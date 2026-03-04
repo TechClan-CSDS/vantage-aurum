@@ -79,11 +79,9 @@ const FAQ = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
-                className={`
-                  border-2 border-gold/20 bg-card/50 transition-all duration-200
-                  hover:border-gold/40
-                  ${isOpen ? "border-gold/50 shadow-[4px_4px_0px_0px_hsl(43_70%_35%/0.4)]" : "shadow-[3px_3px_0px_0px_hsl(43_70%_35%/0.15)]"}
-                `}
+                className={`border-2 border-gold/20 bg-card/50 transition-all duration-200 hover:border-gold/40 ${
+                  isOpen ? "border-gold/50" : ""
+                }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}

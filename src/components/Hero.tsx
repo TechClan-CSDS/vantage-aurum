@@ -216,7 +216,7 @@ const Hero = () => {
           {!devfolioError ? (
             <div
               className="apply-button"
-              data-hackathon-slug="YOUR-HACKATHON-SLUG" // Replace with your actual hackathon slug
+              data-hackathon-slug="aurum2026" // Replace with your actual hackathon slug
               data-button-theme="light"
               style={{ height: "44px", width: "312px" }}
             />

@@ -48,17 +48,17 @@ const Hero = () => {
           style={{
             background: "linear-gradient(90deg, transparent 5%, hsl(43 90% 70% / 0.3) 25%, hsl(43 80% 55% / 0.5) 50%, hsl(43 90% 70% / 0.3) 75%, transparent 95%)",
             filter: "blur(2px)",
-            boxShadow: "0 0 40px 15px hsl(43 80% 55% / 0.1), 0 0 80px 30px hsl(43 80% 55% / 0.05)",
+            
           }}
         />
         {/* Subtle particle dots */}
         <div
           className="absolute top-[35%] left-[20%] w-1 h-1 bg-gold/20 rounded-full"
-          style={{ filter: "blur(1px)", boxShadow: "0 0 6px 2px hsl(43 80% 55% / 0.15)" }}
+          style={{ filter: "blur(1px)" }}
         />
         <div
           className="absolute top-[38%] right-[25%] w-1.5 h-1.5 bg-gold/15 rounded-full"
-          style={{ filter: "blur(1px)", boxShadow: "0 0 8px 3px hsl(43 80% 55% / 0.1)" }}
+          style={{ filter: "blur(1px)" }}
         />
         <div
           className="absolute top-[44%] left-[40%] w-0.5 h-0.5 bg-gold/25 rounded-full"

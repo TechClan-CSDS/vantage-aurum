@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
 import { useMemo, useState, useEffect } from "react";
+import devfoliologo from './../assets/Devfolio.png'
 
 /* ---------------------------
    Static Binary Background
@@ -202,7 +203,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-10 md:gap-14 text-center"
+          className="flex flex-wrap justify-center gap-10 md:gap-14 text-center mb-16"
         >
           {[
             { value: "24h", label: "Build Window" },
@@ -218,6 +219,36 @@ const Hero = () => {
               </div>
             </div>
           ))}
+        </motion.div>
+
+        {/* Sponsors Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="mt-8 pt-8 border-t border-gold/10"
+        >
+          <p className="text-muted-foreground text-xs font-mono uppercase tracking-wider mb-6">
+            Powered By
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {/* Devfolio Logo */}
+            <a
+              href="https://devfolio.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="opacity-70 hover:opacity-100 transition-opacity duration-200"
+            >
+              <img
+                src={devfoliologo}
+                alt="Devfolio"
+                className="h-8 md:h-10 w-auto"
+              />
+            </a>
+            
+            {/* Placeholder for other sponsors - add more as needed */}
+            {/* <img src="/path/to/sponsor-logo.png" alt="Sponsor" className="h-8 md:h-10 w-auto opacity-70 hover:opacity-100 transition-opacity" /> */}
+          </div>
         </motion.div>
 
       </div>

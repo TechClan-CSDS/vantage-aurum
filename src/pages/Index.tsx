@@ -7,6 +7,7 @@ import Format from "@/components/Format";
 import Evaluation from "@/components/Evaluation";
 import CTA from "@/components/CTA";
 import Venue from "@/components/Venue";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
       <Format />
       <Evaluation />
       <CTA />
+      <FAQ />
       <Venue />
       <Marquee />
       <Footer />

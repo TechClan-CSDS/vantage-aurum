@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
 import { useMemo, useState, useEffect } from "react";
 
@@ -74,7 +75,7 @@ const StaticBinaryRain = () => {
 --------------------------- */
 
 const Countdown = () => {
-  const TARGET = new Date("2026-04-11T10:00:00");
+  const TARGET = new Date("2026-04-11T09:00:00");
   const [time, setTime] = useState({ d: 0, h: 0, m: 0, s: 0 });
 
   useEffect(() => {
@@ -98,7 +99,7 @@ const Countdown = () => {
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <div className="text-gold font-mono font-bold text-xl md:text-2xl tracking-widest">
+    <div className="text-gold font-mono font-bold text-xl md:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(212,175,55,0.35)]">
       {pad(time.d)} : {pad(time.h)} : {pad(time.m)} : {pad(time.s)}
     </div>
   );
@@ -109,37 +110,35 @@ const Countdown = () => {
 --------------------------- */
 
 const Hero = () => {
-
+  // Load Devfolio SDK
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://apply.devfolio.co/v2/sdk.js";
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
-
+    
     return () => {
       document.body.removeChild(script);
     };
   }, []);
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20"
-    >
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20">
+
       <StaticBinaryRain />
 
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto">
 
-        {/* Date */}
+        {/* Date + Countdown */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
+          className="mb-12"
         >
           <p className="text-gold font-display font-black tracking-[0.28em] text-xl md:text-2xl">
-            APRIL 11–12 2026
+            APRIL 11–12 '26
           </p>
 
           <div className="mt-3 flex justify-center">
@@ -151,40 +150,51 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.88 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           className="mb-10"
         >
           <img
             src={aurumLogo}
-            alt="Aurum Hackathon"
-            className="w-72 md:w-[30rem] lg:w-[36rem] mx-auto"
+            alt="Aurum"
+            className="w-72 md:w-[28rem] lg:w-[36rem] mx-auto"
           />
         </motion.div>
 
         {/* Tagline */}
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-foreground/70 text-base md:text-lg max-w-xl mx-auto mb-10"
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="text-foreground/70 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10"
         >
-          Build real systems in 24 hours.  
-          AI-native projects across fintech, data, blockchain, and open innovation.
+          Build real systems in 24 hours.
+          <br />
+          <span className="text-gold font-semibold">
+            AI-native projects. Curated builders.
+          </span>
         </motion.p>
 
-        {/* Devfolio Button */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
-          className="flex justify-center mb-14"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
         >
+          {/* Devfolio Apply Button */}
           <div
             className="apply-button"
-            data-hackathon-slug="aurum2026"
-            data-button-theme="dark-inverted"
+            data-hackathon-slug="YOUR-HACKATHON-SLUG" // Replace with your actual hackathon slug
+            data-button-theme="light"
             style={{ height: "44px", width: "312px" }}
           ></div>
+
+          <a
+            href="#tracks"
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gold/30 text-gold font-display font-bold text-sm tracking-wider hover:border-gold/60 hover:bg-gold/5 transition-all duration-200"
+          >
+            View Tracks ↓
+          </a>
         </motion.div>
 
         {/* Stats */}
@@ -211,6 +221,7 @@ const Hero = () => {
         </motion.div>
 
       </div>
+
     </section>
   );
 };

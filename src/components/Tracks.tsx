@@ -5,22 +5,22 @@ const tracks = [
   {
     num: "01",
     title: "Fintech",
-    description: "Intelligent financial systems — risk analysis, fraud detection, automated trading, personalized banking.",
+    description: "Build intelligent financial systems that improve how money moves and decisions are made. Projects may include fraud detection tools, risk analysis models, automated trading strategies, or personalized financial assistants that help users manage investments, spending, and financial planning.",
   },
   {
     num: "02",
     title: "AI/ML & Data Science",
-    description: "Autonomous pipelines, self-improving ML workflows, intelligent data processing at scale.",
+    description: "Build intelligent systems that learn from data and improve over time. Projects may include machine learning models, automated data pipelines, predictive analytics tools, or AI agents that process large datasets and generate useful insights for real world problems.",
   },
   {
     num: "03",
     title: "Blockchain",
-    description: "Decentralized intelligence — AI agents for smart contracts, DeFi protocols, on-chain analytics.",
+    description: "Build decentralized applications and on-chain systems that bring transparency and trust to digital platforms. Projects can include smart contract based applications, DeFi tools, on-chain analytics, decentralized identity solutions, or systems that integrate blockchain with AI driven automation.",
   },
   {
     num: "04",
     title: "Open Innovation",
-    description: "Healthcare, education, sustainability, anything. Pick a real problem, solve it with AI agents.",
+    description: "Solve real world problems across any domain using technology and intelligent systems. Projects can focus on areas such as healthcare, education, sustainability, productivity, or social impact. The goal is to build practical solutions that address meaningful challenges and demonstrate strong technical execution.",
   },
 ];
 

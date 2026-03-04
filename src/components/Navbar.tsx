@@ -34,16 +34,16 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="fixed top-0 left-0 right-0 z-50 border-b border-gold/20 bg-background/80 backdrop-blur-lg"
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
-        {/* Logo */}
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 items-center px-5 py-3">
+        {/* Left (logo) */}
         <div className="flex items-center">
           <button onClick={() => handleClick("Home")}>
             <img src={aurum_small} alt="Aurum" className="h-9 md:h-10 w-auto" />
           </button>
         </div>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Center (links) */}
+        <div className="hidden md:flex justify-center items-center gap-6">
           {links.map((item) => (
             <button
               key={item}
@@ -55,8 +55,8 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex justify-end items-center">
+        {/* Right (menu button) */}
+        <div className="flex justify-end">
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden text-foreground flex items-center"

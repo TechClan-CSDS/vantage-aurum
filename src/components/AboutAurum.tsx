@@ -1,20 +1,5 @@
 import { motion } from "framer-motion";
 
-const features = [
-  {
-    title: "24 Hours",
-    desc: "Non-stop building. From idea to working system.",
-  },
-  {
-    title: "₹50K+ Prizes",
-    desc: "Rewards for the most impactful builds.",
-  },
-  {
-    title: "Food & Swag",
-    desc: "Fuel, merch, and everything you need to ship.",
-  },
-];
-
 const AboutAurum = () => {
   return (
     <section id="about" className="py-24 px-4">
@@ -34,24 +19,6 @@ const AboutAurum = () => {
           fintech, AI, blockchain, and open innovation — transforming ideas
           into working products with real impact.
         </p>
-
-        {/* FEATURES */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {features.map((f) => (
-            <motion.div
-              key={f.title}
-              whileHover={{ y: -4 }}
-              className="border border-gold/20 p-6 text-center hover:bg-gold/5 transition"
-            >
-              <p className="font-display font-black text-xl text-gold mb-2">
-                {f.title}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {f.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
 
       </div>
     </section>

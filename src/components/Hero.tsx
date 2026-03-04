@@ -252,8 +252,7 @@ const Hero = () => {
         >
           {[
             { value: "24h", label: "Build Window" },
-            { value: "₹50K+", label: "Prize Pool" },
-            { value: "4", label: "Tracks" },
+            { value: "₹50K+", label: "Prize Pool" }
           ].map((s) => (
             <div key={s.label}>
               <div className="text-gold font-display font-black text-3xl md:text-4xl">

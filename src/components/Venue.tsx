@@ -11,9 +11,11 @@ const Venue = () => {
           viewport={{ once: true }}
           className="mb-10"
         >
-          <h2 className="text-4xl md:text-6xl font-display font-black text-foreground uppercase tracking-tight mb-4">
-            Find us <span className="text-gradient-gold">here.</span>
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
+              Event <span className="text-gradient-gold">Venue</span>
+            </h2>
+          </div>
           <div className="inline-flex items-center gap-3 px-4 py-2 border-2 border-gold/30 bg-gold/5">
             <MapPin className="w-4 h-4 text-gold" />
             <p className="text-sm text-foreground/80 font-body">

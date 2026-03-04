@@ -34,10 +34,11 @@ const Tracks = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h2 className="text-4xl md:text-6xl font-display font-black text-foreground uppercase tracking-tight">
-            Four tracks,<br />
-            <span className="text-gradient-gold">AI-Native Projects.</span>
-          </h2>
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
+          Hackathon <span className="text-gradient-gold">Tracks</span>
+        </h2>
+      </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-0 border-2 border-gold/20">

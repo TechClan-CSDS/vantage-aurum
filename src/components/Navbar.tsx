@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import aurum_small from "@/assets/aurum-small.png";
-import { ArrowUpRight } from "lucide-react";
 
-
-const links = ["Tracks", "Format", "Venue"];
+const links = ["Tracks", "Venue", "Schedule", "Connect"];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -17,15 +15,17 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="fixed top-0 left-0 right-0 z-50 border-b border-gold/20 bg-background/80 backdrop-blur-lg"
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3">
+      <div className="max-w-6xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center px-5 py-3">
 
         {/* Logo */}
-        <a href="#" className="flex items-center">
-          <img src={aurum_small} alt="Aurum" className="h-9 md:h-10 w-auto" />
-        </a>
+        <div className="flex items-center">
+          <a href="#">
+            <img src={aurum_small} alt="Aurum" className="h-9 md:h-10 w-auto" />
+          </a>
+        </div>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Center Links */}
+        <div className="hidden md:flex justify-center items-center gap-6">
           {links.map((item) => (
             <a
               key={item}
@@ -38,9 +38,8 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex items-center gap-3">
+        <div className="flex justify-end items-center gap-3">
 
-          {/* Apply Button */}
           <a
             href="https://devfolio.co"
             target="_blank"
@@ -51,7 +50,6 @@ const Navbar = () => {
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 
-          {/* Mobile Menu */}
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden text-foreground"
@@ -62,7 +60,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}

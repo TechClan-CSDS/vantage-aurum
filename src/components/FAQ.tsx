@@ -63,14 +63,10 @@ const FAQ = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="text-center mb-16"
         >
-          <span className="text-gold font-mono text-xs uppercase tracking-[0.3em]">
-            Got Questions?
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-display font-black uppercase mt-2 text-foreground">
-            FAQ
+          <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
+            Frequently Asked <span className="text-gradient-gold">Questions</span>
           </h2>
         </motion.div>
 

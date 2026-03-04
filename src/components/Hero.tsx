@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
 import { useMemo, useState, useEffect } from "react";
-import devfoliologo from './../assets/Devfolio.png'
+import devfoliologo from "./../assets/Devfolio.png"
 
 /* ---------------------------
    Static Binary Background
@@ -111,18 +111,48 @@ const Countdown = () => {
 --------------------------- */
 
 const Hero = () => {
-  // Load Devfolio SDK
+  const [devfolioLoaded, setDevfolioLoaded] = useState(false);
+  const [devfolioError, setDevfolioError] = useState(false);
+
+  // Load Devfolio SDK with better error handling
   useEffect(() => {
+    // Check if script already exists
+    if (document.querySelector('script[src="https://apply.devfolio.co/v2/sdk.js"]')) {
+      setDevfolioLoaded(true);
+      return;
+    }
+
     const script = document.createElement('script');
     script.src = 'https://apply.devfolio.co/v2/sdk.js';
     script.async = true;
     script.defer = true;
+    
+    script.onload = () => {
+      setDevfolioLoaded(true);
+      setDevfolioError(false);
+    };
+    
+    script.onerror = () => {
+      console.error('Failed to load Devfolio SDK');
+      setDevfolioError(true);
+      setDevfolioLoaded(false);
+    };
+
     document.body.appendChild(script);
     
     return () => {
-      document.body.removeChild(script);
+      // Check if script exists before removing
+      const existingScript = document.querySelector('script[src="https://apply.devfolio.co/v2/sdk.js"]');
+      if (existingScript && document.body.contains(existingScript)) {
+        document.body.removeChild(existingScript);
+      }
     };
   }, []);
+
+  // Fallback button in case Devfolio SDK fails to load
+  const handleFallbackApply = () => {
+    window.open('https://devfolio.co', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20">
@@ -183,12 +213,28 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
         >
           {/* Devfolio Apply Button */}
-          <div
-            className="apply-button"
-            data-hackathon-slug="YOUR-HACKATHON-SLUG" // Replace with your actual hackathon slug
-            data-button-theme="light"
-            style={{ height: "44px", width: "312px" }}
-          ></div>
+          {!devfolioError ? (
+            <div
+              className="apply-button"
+              data-hackathon-slug="YOUR-HACKATHON-SLUG" // Replace with your actual hackathon slug
+              data-button-theme="light"
+              style={{ height: "44px", width: "312px" }}
+            />
+          ) : (
+            /* Fallback button if Devfolio SDK fails */
+            <button
+              onClick={handleFallbackApply}
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-gold text-black font-display font-black text-base tracking-wider border-2 border-gold-dark hover:bg-gold-light transition-all duration-200"
+              style={{ height: "44px", width: "312px" }}
+            >
+              <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.46 123.46" fill="currentColor">
+                <path d="M115.46 68a55.43 55.43 0 0 1-50.85 55.11S28.12 124 16 123a12.6 12.6 0 0 1-10.09-7.5 15.85 15.85 0 0 0 5.36 1.5c4 .34 10.72.51 20.13.51 13.82 0 28.84-.38 29-.38h.26a60.14 60.14 0 0 0 54.72-52.47c.05 1.05.08 2.18.08 3.34z" />
+                <path d="M110.93 55.87A55.43 55.43 0 0 1 60.08 111s-36.48.92-48.58-.12C5 110.29.15 104.22 0 97.52l.2-83.84C.38 7 5.26.94 11.76.41c12.11-1 48.59.12 48.59.12a55.41 55.41 0 0 1 50.58 55.34z" />
+              </svg>
+              <span>Apply with Devfolio</span>
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          )}
 
           <a
             href="#tracks"

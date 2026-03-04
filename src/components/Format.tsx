@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import { Clock, Users, Wifi } from "lucide-react";
+import { Clock, Wifi } from "lucide-react";
 
 const stats = [
   { icon: Clock, value: "24 HRS", label: "Straight" },
-  { icon: Users, value: "60", label: "Teams Max" },
   { icon: Wifi, value: "OFFLINE", label: "In-Person" },
 ];
 
@@ -36,7 +35,7 @@ const Format = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 border-2 border-gold/20 mb-10"
+          className="grid grid-cols-2 border-2 border-gold/20 mb-10"
         >
           {stats.map((s, i) => (
             <div

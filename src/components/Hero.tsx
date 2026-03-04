@@ -5,38 +5,64 @@ import aurumLogo from "@/assets/aurum-logo.png";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
-      {/* Aurora glow effect — gold version of the reference */}
+      {/* Aurora background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Top arc glow */}
+        {/* Deep ambient base */}
         <div
-          className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[120%] h-[400px]"
+          className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 80% 50% at 50% 100%, hsl(43 90% 55% / 0.25) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 40% at 30% 80%, hsl(35 80% 45% / 0.15) 0%, transparent 60%),
-              radial-gradient(ellipse 60% 40% at 70% 80%, hsl(50 90% 60% / 0.15) 0%, transparent 60%)
+              radial-gradient(ellipse 100% 80% at 50% 20%, hsl(43 60% 12% / 0.6) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 50% at 20% 60%, hsl(30 50% 8% / 0.4) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 50% at 80% 60%, hsl(50 50% 8% / 0.4) 0%, transparent 50%)
             `,
-            filter: "blur(40px)",
           }}
         />
-        {/* Bottom reflection */}
+        {/* Upper arc — warm gold sweep */}
         <div
-          className="absolute top-[45%] left-1/2 -translate-x-1/2 w-[100%] h-[300px]"
+          className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[140%] h-[500px]"
           style={{
             background: `
-              radial-gradient(ellipse 70% 60% at 50% 0%, hsl(43 80% 55% / 0.12) 0%, transparent 70%)
+              radial-gradient(ellipse 90% 45% at 50% 100%, hsl(43 95% 55% / 0.18) 0%, transparent 65%),
+              radial-gradient(ellipse 50% 35% at 25% 90%, hsl(30 80% 40% / 0.12) 0%, transparent 55%),
+              radial-gradient(ellipse 50% 35% at 75% 90%, hsl(50 85% 50% / 0.12) 0%, transparent 55%)
             `,
-            filter: "blur(60px)",
+            filter: "blur(50px)",
           }}
         />
-        {/* Central bright line */}
+        {/* Lower mirrored arc */}
         <div
-          className="absolute top-[42%] left-1/2 -translate-x-1/2 w-[80%] h-[2px]"
+          className="absolute top-[50%] left-1/2 -translate-x-1/2 w-[130%] h-[400px]"
           style={{
-            background: "linear-gradient(90deg, transparent, hsl(43 90% 70% / 0.4), hsl(43 80% 55% / 0.6), hsl(43 90% 70% / 0.4), transparent)",
-            filter: "blur(1px)",
-            boxShadow: "0 0 30px 10px hsl(43 80% 55% / 0.15)",
+            background: `
+              radial-gradient(ellipse 85% 50% at 50% 0%, hsl(43 80% 50% / 0.1) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 30% at 35% 10%, hsl(35 70% 40% / 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse 40% 30% at 65% 10%, hsl(48 80% 55% / 0.08) 0%, transparent 50%)
+            `,
+            filter: "blur(70px)",
           }}
+        />
+        {/* Central bright convergence line */}
+        <div
+          className="absolute top-[40%] left-1/2 -translate-x-1/2 w-[85%] h-[3px]"
+          style={{
+            background: "linear-gradient(90deg, transparent 5%, hsl(43 90% 70% / 0.3) 25%, hsl(43 80% 55% / 0.5) 50%, hsl(43 90% 70% / 0.3) 75%, transparent 95%)",
+            filter: "blur(2px)",
+            boxShadow: "0 0 40px 15px hsl(43 80% 55% / 0.1), 0 0 80px 30px hsl(43 80% 55% / 0.05)",
+          }}
+        />
+        {/* Subtle particle dots */}
+        <div
+          className="absolute top-[35%] left-[20%] w-1 h-1 bg-gold/20 rounded-full"
+          style={{ filter: "blur(1px)", boxShadow: "0 0 6px 2px hsl(43 80% 55% / 0.15)" }}
+        />
+        <div
+          className="absolute top-[38%] right-[25%] w-1.5 h-1.5 bg-gold/15 rounded-full"
+          style={{ filter: "blur(1px)", boxShadow: "0 0 8px 3px hsl(43 80% 55% / 0.1)" }}
+        />
+        <div
+          className="absolute top-[44%] left-[40%] w-0.5 h-0.5 bg-gold/25 rounded-full"
+          style={{ filter: "blur(0.5px)" }}
         />
       </div>
 
@@ -74,7 +100,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-foreground/70 text-base md:text-lg font-body leading-relaxed max-w-xl mx-auto mb-10"
         >
-          24 hours. 60 teams. Every project runs on AI agents.
+          24 hours. Every project runs on AI agents.
           <br />
           <span className="text-gold font-semibold">Build real systems. Ship or go home.</span>
         </motion.p>
@@ -113,7 +139,7 @@ const Hero = () => {
           {[
             { value: "24h", label: "Non-stop hacking" },
             { value: "₹50K+", label: "In prizes" },
-            { value: "60", label: "Teams max" },
+            { value: "4", label: "Tracks" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-gold font-display font-black text-3xl md:text-4xl">{s.value}</div>

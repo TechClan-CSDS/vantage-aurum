@@ -16,7 +16,7 @@ const CTA = () => {
             <span className="text-gradient-gold">worth shipping.</span>
           </h2>
           <p className="text-muted-foreground text-sm mb-8 max-w-md mx-auto font-mono">
-            Applications open on Devfolio. 60 spots. Don't wait.
+            Applications open on Devfolio. Limited spots. Don't wait.
           </p>
           <a
             href="https://devfolio.co"

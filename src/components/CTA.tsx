@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import devfoliologo from "@/assets/Devfolio.png";
 
 const CTA = () => {
   return (
@@ -10,23 +11,34 @@ const CTA = () => {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto"
       >
-        <div className="border-2 border-gold p-10 md:p-16 text-center bg-gold/[0.03]">
-          <h2 className="text-4xl md:text-5xl font-display font-black text-foreground uppercase tracking-tight mb-4">
-            Build something<br />
+        <div className="border border-gold/40 bg-gold/[0.03] px-8 py-12 md:px-14 md:py-16 text-center">
+
+          <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-foreground mb-4">
+            Build something
+            <br />
             <span className="text-gradient-gold">worth shipping.</span>
           </h2>
-          <p className="text-muted-foreground text-sm mb-8 max-w-md mx-auto font-mono">
-            Applications open on Devfolio!
+
+          <p className="text-muted-foreground text-sm font-mono max-w-md mx-auto mb-10">
+            Applications are open. Submit your idea and start building at Aurum.
           </p>
+
           <a
-            href="https://devfolio.co"
+            href="https://aurum26.devfolio.co/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-10 py-4 bg-gold text-primary-foreground font-display font-black text-base uppercase tracking-wider border-2 border-gold-dark hover:bg-gold-light transition-all duration-200"
+            className="group inline-flex items-center justify-center gap-3 px-7 py-3 bg-gold text-black font-display font-bold text-sm uppercase tracking-wider border border-gold hover:bg-gold-light transition-all duration-200 hover:shadow-[0_0_18px_rgba(212,175,55,0.35)]"
+            style={{ height: 46, minWidth: 260 }}
           >
-            Apply via Devfolio
-            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            Apply via
+            <img
+              src={devfoliologo}
+              alt="Devfolio"
+              className="h-5 w-auto"
+            />
+            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
+
         </div>
       </motion.div>
     </section>

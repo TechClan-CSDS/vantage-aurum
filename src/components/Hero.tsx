@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
+import devfolioLogo from "./../assets/Devfolio.png";
 import { useMemo, useState, useEffect } from "react";
-import devfoliologo from "./../assets/Devfolio.png"
 
 /* ---------------------------
    Static Binary Background
@@ -100,8 +100,8 @@ const Countdown = () => {
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <div className="text-gold font-mono font-bold text-xl md:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(212,175,55,0.35)]">
-      {time.d} D : {time.h} H : {time.m} M : {time.s} S
+    <div className="text-gold font-mono font-bold text-lg md:text-xl tracking-widest">
+      {pad(time.d)}D : {pad(time.h)}H : {pad(time.m)}M : {pad(time.s)}S
     </div>
   );
 };
@@ -111,50 +111,8 @@ const Countdown = () => {
 --------------------------- */
 
 const Hero = () => {
-  const [devfolioLoaded, setDevfolioLoaded] = useState(false);
-  const [devfolioError, setDevfolioError] = useState(false);
-
-  useEffect(() => {
-    // Check if script already exists
-    if (document.querySelector('script[src="https://apply.devfolio.co/v2/sdk.js"]')) {
-      setDevfolioLoaded(true);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://apply.devfolio.co/v2/sdk.js';
-    script.async = true;
-    script.defer = true;
-    
-    script.onload = () => {
-      setDevfolioLoaded(true);
-      setDevfolioError(false);
-    };
-    
-    script.onerror = () => {
-      console.error('Failed to load Devfolio SDK');
-      setDevfolioError(true);
-      setDevfolioLoaded(false);
-    };
-
-    document.body.appendChild(script);
-    
-    return () => {
-      // Check if script exists before removing
-      const existingScript = document.querySelector('script[src="https://apply.devfolio.co/v2/sdk.js"]');
-      if (existingScript && document.body.contains(existingScript)) {
-        document.body.removeChild(existingScript);
-      }
-    };
-  }, []);
-
-  // Fallback button in case Devfolio SDK fails to load
-  const handleFallbackApply = () => {
-    window.open('https://devfolio.co', '_blank', 'noopener,noreferrer');
-  };
-
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20">
 
       <StaticBinaryRain />
 
@@ -165,9 +123,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-10"
         >
-          <p className="text-gold font-display font-black tracking-[0.28em] text-xl md:text-2xl">
+          <p className="text-gold font-display font-black tracking-[0.28em] text-lg md:text-xl">
             APRIL 11–12 '26
           </p>
 
@@ -186,7 +144,7 @@ const Hero = () => {
           <img
             src={aurumLogo}
             alt="Aurum"
-            className="w-72 md:w-[28rem] lg:w-[36rem] mx-auto"
+            className="w-64 md:w-[26rem] lg:w-[34rem] mx-auto"
           />
         </motion.div>
 
@@ -209,39 +167,34 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14"
         >
-          {/* Devfolio Apply Button */}
-          {!devfolioError ? (
-            <div
-              className="apply-button"
-              data-hackathon-slug="aurum26" 
-              data-button-theme="dark-inverted"
-              style={{ height: "44px", width: "280px" }}
+
+          <a
+            href="https://aurum26.devfolio.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center gap-3 px-7 py-3 bg-gold text-black font-display font-bold text-sm uppercase tracking-wider border border-gold hover:bg-gold-light transition-all duration-200 hover:shadow-[0_0_18px_rgba(212,175,55,0.35)]"
+            style={{ height: 46, minWidth: 260 }}
+          >
+            Apply via
+            <img
+              src={devfolioLogo}
+              alt="Devfolio"
+              className="h-5 w-auto"
             />
-          ) : (
-            /* Fallback button if Devfolio SDK fails */
-            <button
-              onClick={handleFallbackApply}
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-gold text-black font-display font-black text-base tracking-wider border-2 border-gold-dark hover:bg-gold-light transition-all duration-200"
-              style={{ height: "44px", width: "312px" }}
-            >
-              <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.46 123.46" fill="currentColor">
-                <path d="M115.46 68a55.43 55.43 0 0 1-50.85 55.11S28.12 124 16 123a12.6 12.6 0 0 1-10.09-7.5 15.85 15.85 0 0 0 5.36 1.5c4 .34 10.72.51 20.13.51 13.82 0 28.84-.38 29-.38h.26a60.14 60.14 0 0 0 54.72-52.47c.05 1.05.08 2.18.08 3.34z" />
-                <path d="M110.93 55.87A55.43 55.43 0 0 1 60.08 111s-36.48.92-48.58-.12C5 110.29.15 104.22 0 97.52l.2-83.84C.38 7 5.26.94 11.76.41c12.11-1 48.59.12 48.59.12a55.41 55.41 0 0 1 50.58 55.34z" />
-              </svg>
-              <span>Apply with Devfolio</span>
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
-          )}
+            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
 
           <a
             href="#tracks"
-            className="inline-flex items-center justify-center gap-2 px-8 py-2 bg-black border-2 border-gold text-gold font-display font-bold text-sm tracking-wider hover:bg-gold/10 transition-all duration-200"
-            style={{ height: "44px", width: "180px", borderRadius: 5}}
+            className="group flex items-center justify-center gap-2 px-7 py-3 border border-gold text-gold font-display font-bold text-sm uppercase tracking-wider hover:bg-gold/10 transition-all duration-200"
+            style={{ height: 46, minWidth: 180 }}
           >
-            View Tracks ↓
+            View Tracks
+            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
+
         </motion.div>
 
         {/* Stats */}
@@ -249,11 +202,11 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-10 md:gap-14 text-center mb-16"
+          className="flex justify-center gap-10 md:gap-14 text-center"
         >
           {[
             { value: "24h", label: "Build Window" },
-            { value: "₹50K+", label: "Prize Pool" }
+            { value: "₹50K+", label: "Prize Pool" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-gold font-display font-black text-3xl md:text-4xl">
@@ -267,7 +220,6 @@ const Hero = () => {
         </motion.div>
 
       </div>
-
     </section>
   );
 };

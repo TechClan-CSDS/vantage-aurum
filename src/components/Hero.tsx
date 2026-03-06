@@ -216,8 +216,8 @@ const Hero = () => {
             <div
               className="apply-button"
               data-hackathon-slug="aurum26" 
-              data-button-theme="light"
-              style={{ height: "44px", width: "312px" }}
+              data-button-theme="dark-inverted"
+              style={{ height: "44px", width: "280px" }}
             />
           ) : (
             /* Fallback button if Devfolio SDK fails */
@@ -237,7 +237,8 @@ const Hero = () => {
 
           <a
             href="#tracks"
-            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gold/30 text-gold font-display font-bold text-sm tracking-wider hover:border-gold/60 hover:bg-gold/5 transition-all duration-200"
+            className="inline-flex items-center justify-center gap-2 px-8 py-2 bg-black border-2 border-gold text-gold font-display font-bold text-sm tracking-wider hover:bg-gold/10 transition-all duration-200"
+            style={{ height: "44px", width: "180px", borderRadius: 5}}
           >
             View Tracks ↓
           </a>

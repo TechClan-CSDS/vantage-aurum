@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "What tracks are available?",
-    a: "Aurum features four tracks: Fintech, AI/ML & Data Science, Blockchain, and Open Innovation. Regardless of track, every project must incorporate meaningful AI-driven intelligence or agent-based workflows.",
+    a: "Aurum features four tracks: Fintech, Data Science, Blockchain, and Open Innovation. Regardless of track, every project must incorporate meaningful AI-driven intelligence or agent-based workflows.",
   },
   {
     q: "What should participants bring?",

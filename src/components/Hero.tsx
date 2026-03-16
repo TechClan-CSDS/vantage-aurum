@@ -184,7 +184,7 @@ const Hero = () => {
 
           {/* Brochure */}
           <a
-            href="src/components/AURUM_Participant_Brochure.pdf"
+            href={new URL("./AURUM_Participant_Brochure.pdf", import.meta.url).href}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center gap-2 px-7 py-3 border border-gold text-gold font-display font-bold text-sm uppercase tracking-wider hover:bg-gold/10 transition-all duration-200"

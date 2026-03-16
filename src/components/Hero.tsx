@@ -162,14 +162,14 @@ const Hero = () => {
           </span>
         </motion.p>
 
-        {/* CTA */}
+        {/* Primary CTAs — max 2 side by side */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14"
         >
-
+          {/* Apply */}
           <a
             href="https://aurum26.devfolio.co/"
             target="_blank"
@@ -178,23 +178,21 @@ const Hero = () => {
             style={{ height: 46, minWidth: 260 }}
           >
             Apply via
-            <img
-              src={devfolioLogo}
-              alt="Devfolio"
-              className="h-5 w-auto"
-            />
+            <img src={devfolioLogo} alt="Devfolio" className="h-5 w-auto" />
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
 
+          {/* Brochure */}
           <a
-            href="#tracks"
+            href="src/components/AURUM_Participant_Brochure.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center justify-center gap-2 px-7 py-3 border border-gold text-gold font-display font-bold text-sm uppercase tracking-wider hover:bg-gold/10 transition-all duration-200"
             style={{ height: 46, minWidth: 180 }}
           >
-            View Tracks
+            Participant Brochure
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
-
         </motion.div>
 
         {/* Stats */}

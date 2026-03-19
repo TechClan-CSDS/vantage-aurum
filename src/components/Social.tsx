@@ -50,7 +50,7 @@ const Socials = () => {
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
                 viewport={{ once: true }}
-                className="group flex flex-col items-center justify-center gap-4 w-40 h-32 border border-gold/20 bg-gold/[0.02] text-foreground/70 hover:text-gold hover:border-gold/50 hover:bg-gold/[0.05] transition-all duration-300 rounded-sm relative overflow-hidden"
+                className="group flex flex-col items-center justify-center gap-4 w-full sm:w-40 h-28 sm:h-32 border border-gold/20 bg-gold/[0.02] text-foreground/70 hover:text-gold hover:border-gold/50 hover:bg-gold/[0.05] transition-all duration-300 rounded-sm relative overflow-hidden"
               >
                 {/* Subtle background glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

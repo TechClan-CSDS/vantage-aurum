@@ -4,7 +4,7 @@ import devfolioIcon from "@/assets/Devfolio_Logo.png";
 
 const CTA = () => {
   return (
-    <section className="relative py-20 md:py-28 px-4">
+    <section className="relative py-20 md:py-28 px-4 overflow-hidden">
       
       {/* Background Deep Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gold/[0.04] blur-[150px] pointer-events-none rounded-full" />

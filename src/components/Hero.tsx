@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
-import devfolioLogo from "./../assets/Devfolio.png";
+import devfolioLogo from "./../assets/Devfolio_Logo.png";
 import { useMemo, useState, useEffect, useRef } from "react";
 
 /* ---------------------------
@@ -305,16 +305,16 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="flex justify-center gap-14 md:gap-24"
+          className="flex flex-row flex-nowrap justify-center items-start gap-6 sm:gap-14 md:gap-24 w-full max-w-sm sm:max-w-none mx-auto"
         >
-          <div className="text-center">
-            <div className="text-gold font-display font-black text-4xl md:text-5xl">
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-gold font-display font-black text-3xl sm:text-4xl md:text-5xl">
               <NumberTicker value={24} suffix="h" />
             </div>
             <div className="text-muted-foreground text-[10px] font-mono uppercase tracking-[0.3em] mt-2">Build Window</div>
           </div>
-          <div className="text-center">
-            <div className="text-gold font-display font-black text-4xl md:text-5xl">
+          <div className="text-center flex-1 min-w-0">
+            <div className="text-gold font-display font-black text-3xl sm:text-4xl md:text-5xl">
               <NumberTicker value={50} prefix="₹" suffix="K+" />
             </div>
             <div className="text-muted-foreground text-[10px] font-mono uppercase tracking-[0.3em] mt-2">Prize Pool</div>

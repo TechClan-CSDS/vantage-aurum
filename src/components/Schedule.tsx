@@ -48,38 +48,47 @@ const schedule: DaySchedule[] = [
 
 /* ---- Event type config ---- */
 const typeConfig: Record<EventType, { icon: React.ElementType; color: string; dot: string }> = {
-  hack:     { icon: Code2,   color: "text-gold",           dot: "bg-gold" },
-  meal:     { icon: Utensils, color: "text-amber-400/80",  dot: "bg-amber-400" },
-  ceremony: { icon: Mic2,    color: "text-foreground/90",  dot: "bg-foreground/60" },
-  mentor:   { icon: Users,   color: "text-sky-400/80",     dot: "bg-sky-400" },
-  snack:    { icon: Coffee,  color: "text-amber-400/60",   dot: "bg-amber-400/60" },
+  hack:     { icon: Code2,    color: "text-gold-light",     dot: "bg-gradient-to-br from-gold-light to-gold" },
+  meal:     { icon: Utensils, color: "text-foreground/80",  dot: "bg-gradient-to-br from-gold-light to-gold" },
+  ceremony: { icon: Mic2,     color: "text-foreground/90",  dot: "bg-gradient-to-br from-gold-light to-gold" },
+  mentor:   { icon: Users,    color: "text-gold/80",        dot: "bg-gradient-to-br from-gold-light to-gold" },
+  snack:    { icon: Coffee,   color: "text-foreground/70",  dot: "bg-gradient-to-br from-gold-light to-gold" },
 };
 
 /* ---- Timeline Event Row ---- */
 const EventRow = ({ event, index }: { event: ScheduleEvent; index: number }) => {
   const cfg = typeConfig[event.type];
   const Icon = cfg.icon;
+  const shouldGlowDot = event.type === "hack";
 
   return (
     <motion.div
       initial={{ opacity: 0, x: -16 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.35, delay: index * 0.06, ease: "easeOut" }}
-      className="relative pl-10 pb-6 last:pb-0 group"
+      className="relative pl-8 sm:pl-10 pb-6 last:pb-0 group"
     >
-      {/* Pulsing dot */}
-      <div className="absolute -left-[5px] top-[14px] flex items-center justify-center">
-        <span className={`absolute w-4 h-4 rounded-full ${cfg.dot} opacity-20 group-hover:opacity-30 animate-ping`} />
+      {/* Timeline dot */}
+      <div className="absolute -left-[3px] sm:-left-[5px] top-[14px] flex items-center justify-center">
+        <span
+          className={`absolute w-4 h-4 rounded-full ${cfg.dot} opacity-20 group-hover:opacity-30 ${
+            shouldGlowDot ? "timeline-dot-soft-glow" : ""
+          }`}
+        />
         <span className={`relative w-2.5 h-2.5 rounded-full ${cfg.dot}`} />
       </div>
 
       {/* Card */}
-      <div className="flex items-center justify-between border border-gold/15 px-5 py-3.5 group-hover:border-gold/35 group-hover:bg-gold/[0.02] transition-all duration-300">
-        <div className="flex items-center gap-3">
-          <Icon className={`w-4 h-4 flex-shrink-0 ${cfg.color}`} />
-          <span className={`text-sm font-body font-medium ${cfg.color}`}>{event.name}</span>
+      <div
+        className="flex items-center justify-between border-l-2 border-transparent px-4 sm:px-5 py-3 transition-all duration-300 group-hover:border-gold"
+      >
+        <div className="flex items-center justify-between gap-3 w-full border border-border border-l-0 px-4 sm:px-5 py-3 group-hover:bg-white/5 hover-glow-gold">
+          <div className="flex items-center gap-3">
+            <Icon className={`w-4 h-4 flex-shrink-0 ${cfg.color}`} />
+            <span className={`text-sm font-body font-medium ${cfg.color}`}>{event.name}</span>
+          </div>
+          <span className="text-gold font-mono text-xs tracking-widest ml-4 flex-shrink-0">{event.time}</span>
         </div>
-        <span className="text-gold font-mono text-xs tracking-widest ml-4 flex-shrink-0">{event.time}</span>
       </div>
     </motion.div>
   );
@@ -90,7 +99,7 @@ const Schedule = () => {
   const [activeDay, setActiveDay] = useState(0);
 
   return (
-    <section id="schedule" className="py-24 px-4">
+    <section id="schedule" className="schedule-premium py-24 px-4 bg-background text-foreground">
       <div className="max-w-3xl mx-auto">
 
         {/* Heading */}
@@ -103,12 +112,12 @@ const Schedule = () => {
           <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
             Event <span className="text-gradient-gold">Schedule</span>
           </h2>
-          <p className="text-sm text-gold/50 font-mono mt-4">24-hour build window · April 11–12 '26</p>
+          <p className="text-sm text-muted-foreground font-mono mt-4">24-hour build window · April 11–12 '26</p>
         </motion.div>
 
         {/* Day Tab Switcher */}
         <div className="flex justify-center mb-12">
-          <div className="relative flex gap-1 p-1 border border-gold/20 bg-gold/[0.02]">
+          <div className="relative flex gap-1 p-1 border border-border bg-card">
             {schedule.map((day, i) => (
               <button
                 key={day.day}
@@ -119,11 +128,11 @@ const Schedule = () => {
                 {activeDay === i && (
                   <motion.span
                     layoutId="day-tab"
-                    className="absolute inset-0 bg-gold/10 border border-gold/30"
+                    className="absolute inset-0 bg-white/5 border border-gold/30"
                     transition={{ type: "spring", stiffness: 400, damping: 35 }}
                   />
                 )}
-                <span className={`relative z-10 transition-colors duration-200 ${activeDay === i ? "text-gold" : "text-foreground/40 hover:text-foreground/70"}`}>
+                <span className={`relative z-10 transition-colors duration-200 ${activeDay === i ? "text-gold-light" : "text-muted-foreground hover:text-foreground"}`}>
                   {day.day} · {day.date}
                 </span>
               </button>
@@ -152,7 +161,7 @@ const Schedule = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="relative ml-4 border-l border-gold/20 pl-0"
+            className="relative ml-2 sm:ml-4 border-l border-border/70 sm:border-border pl-0"
           >
             {schedule[activeDay].events.map((event, i) => (
               <EventRow key={event.name} event={event} index={i} />

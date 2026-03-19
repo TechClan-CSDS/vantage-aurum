@@ -106,12 +106,16 @@ const Navbar = () => {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 items-center px-5 py-3">
+      <div className="max-w-6xl mx-auto w-full min-w-0 grid grid-cols-2 md:grid-cols-3 items-center px-5 py-3">
 
         {/* Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center min-w-0">
           <button onClick={() => handleClick("Home")}>
-            <img src={aurum_small} alt="Aurum" className="h-9 md:h-10 w-auto" />
+            <img
+              src={aurum_small}
+              alt="Aurum"
+              className="h-9 md:h-10 w-auto max-w-[160px] sm:max-w-none object-contain"
+            />
           </button>
         </div>
 
@@ -148,7 +152,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex justify-end">
+        <div className="flex justify-end min-w-0">
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden text-foreground/80 hover:text-gold transition-colors"

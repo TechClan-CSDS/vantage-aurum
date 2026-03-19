@@ -25,9 +25,9 @@ const Footer = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gold/[0.02] blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex items-center justify-between gap-4 pt-6 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 pt-6 text-center md:text-left">
           {/* Left: Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center justify-center md:justify-start w-full md:w-auto">
             <button onClick={scrollToTop} className="focus:outline-none">
               <img 
                 src={aurum_small} 
@@ -38,8 +38,8 @@ const Footer = () => {
           </div>
 
           {/* Right: Credits and Back to Top */}
-          <div className="flex items-center gap-8">
-            <div className="hidden md:flex flex-col items-end gap-1">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full md:w-auto justify-center md:justify-end">
+            <div className="flex flex-col items-center md:items-end gap-1">
               <span className="text-[10px] font-mono text-gold/70 font-bold uppercase tracking-[0.2em]">
                 TechClan · Ace Society
               </span>

@@ -49,7 +49,7 @@ const CTA = () => {
             href="https://aurum26.devfolio.co/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center justify-center overflow-hidden w-full sm:w-auto h-12 sm:min-w-[260px] max-w-sm mx-auto"
+            className="group relative inline-flex items-center justify-center overflow-hidden w-full sm:w-auto h-12 sm:min-w-[260px] max-w-sm mx-auto p-[2px]"
           >
             {/* Spinning Laser Background */}
             <motion.div

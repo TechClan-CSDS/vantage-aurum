@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
 import devfolioLogo from "./../assets/Devfolio.png";
@@ -10,11 +10,17 @@ import { useMemo, useState, useEffect, useRef } from "react";
 
 const StaticBinaryRain = () => {
   const grid = useMemo(() => {
+    // Determine screen size once, but add generous padding to cols/rows
+    // so it over-renders off-screen, preventing any blank gaps on the right/bottom
+    // if the browser calculates width tightly or if zoomed.
+    const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
+    const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
+    
     const cellWidth = 14;
     const cellHeight = 18;
 
-    const cols = Math.ceil(window.innerWidth / cellWidth);
-    const rows = Math.ceil(window.innerHeight / cellHeight);
+    const cols = Math.ceil(screenWidth / cellWidth) + 15; 
+    const rows = Math.ceil(screenHeight / cellHeight) + 10;
 
     return Array.from({ length: rows }, (_, r) => {
       const rowProgress = r / rows;
@@ -92,9 +98,9 @@ const ShimmerDivider = () => (
 
 const FlipCard = ({ value, label }: { value: string; label: string }) => {
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-1.5 sm:gap-2">
       <div
-        className="relative w-16 md:w-20 h-16 md:h-20 flex items-center justify-center overflow-hidden rounded-md"
+        className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center overflow-hidden rounded-md"
         style={{
           background: "#0a0804",
           border: "1px solid rgba(212,175,55,0.25)",
@@ -109,14 +115,14 @@ const FlipCard = ({ value, label }: { value: string; label: string }) => {
             animate={{ opacity: 1, rotateX: 0, y: 0 }}
             exit={{ opacity: 0, rotateX: 90, y: -15 }}
             transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
-            className="font-mono font-bold text-3xl md:text-4xl text-gold"
+            className="font-mono font-bold text-2xl sm:text-3xl md:text-4xl text-gold"
             style={{ textShadow: "0 0 15px rgba(212,175,55,0.3)" }}
           >
             {value}
           </motion.span>
         </AnimatePresence>
       </div>
-      <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-gold/50">{label}</span>
+      <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-gold/50">{label}</span>
     </div>
   );
 };
@@ -144,13 +150,13 @@ const Countdown = () => {
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
       <FlipCard value={pad(time.d)} label="Days" />
-      <span className="text-gold/30 font-mono text-2xl mb-6">:</span>
+      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
       <FlipCard value={pad(time.h)} label="Hours" />
-      <span className="text-gold/30 font-mono text-2xl mb-6">:</span>
+      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
       <FlipCard value={pad(time.m)} label="Mins" />
-      <span className="text-gold/30 font-mono text-2xl mb-6">:</span>
+      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
       <FlipCard value={pad(time.s)} label="Secs" />
     </div>
   );
@@ -159,6 +165,38 @@ const Countdown = () => {
 /* ---------------------------
    Hero
 --------------------------- */
+
+const NumberTicker = ({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const nodeRef = useRef(null);
+  const isInView = useInView(nodeRef, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const end = value;
+      const duration = 1500;
+      let startTime: number | null = null;
+
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const currentCount = Math.floor(progress * end);
+        setDisplayValue(currentCount);
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, value]);
+
+  return (
+    <span ref={nodeRef}>
+      {prefix}{displayValue}{suffix}
+    </span>
+  );
+};
 
 const Hero = () => {
   const statsRef = useRef<HTMLDivElement>(null);
@@ -215,7 +253,7 @@ const Hero = () => {
           <img
             src={aurumLogo}
             alt="Aurum"
-            className="w-68 md:w-[30rem] lg:w-[38rem] mx-auto filter drop-shadow-[0_0_40px_rgba(212,175,55,0.1)]"
+            className="w-[85%] sm:w-[24rem] md:w-[30rem] lg:w-[38rem] mx-auto filter drop-shadow-[0_0_40px_rgba(212,175,55,0.1)]"
           />
         </motion.div>
 
@@ -233,34 +271,33 @@ const Hero = () => {
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16"
-        >
-          <a
-            href="https://aurum26.devfolio.co/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex items-center justify-center gap-3 px-9 py-3 bg-gold text-black font-display font-bold text-sm uppercase tracking-wider transition-all hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.45)]"
-            style={{ height: 48, minWidth: 260 }}
-          >
-            Apply via
-            <img src={devfolioLogo} alt="Devfolio" className="h-5 w-auto" />
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
+           initial={{ opacity: 0, y: 15 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 0.5 }}
+           className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center mb-16 w-full max-w-sm sm:max-w-none mx-auto"
+         >
+           <a
+             href="https://aurum26.devfolio.co/"
+             target="_blank"
+             rel="noopener noreferrer"
+             className="group relative flex items-center justify-center gap-3 px-6 sm:px-9 py-3 bg-gold text-black font-display font-bold text-xs sm:text-sm uppercase tracking-wider transition-all hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.45)] w-full sm:w-auto h-12 sm:min-w-[260px]"
+           >
+             Apply via
+             <img src={devfolioLogo} alt="" className="h-4 sm:h-5 w-auto" />
+             Devfolio
+             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+           </a>
 
-          <a
-            href={new URL("./AURUM_Participant_Brochure.pdf", import.meta.url).href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center justify-center gap-2 px-9 py-3 border border-gold/40 text-gold font-display font-bold text-sm uppercase tracking-wider hover:bg-gold/10 transition-all"
-            style={{ height: 48, minWidth: 200 }}
-          >
-            Brochure
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
-        </motion.div>
+           <a
+             href={new URL("./AURUM_Participant_Brochure.pdf", import.meta.url).href}
+             target="_blank"
+             rel="noopener noreferrer"
+             className="group flex items-center justify-center gap-2 px-6 sm:px-9 py-3 border border-gold/40 text-gold font-display font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-gold/10 transition-all w-full sm:w-auto h-12 sm:min-w-[200px]"
+           >
+             Brochure
+             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+           </a>
+         </motion.div>
 
         {/* Stats */}
         <motion.div
@@ -271,11 +308,15 @@ const Hero = () => {
           className="flex justify-center gap-14 md:gap-24"
         >
           <div className="text-center">
-            <div className="text-gold font-display font-black text-4xl md:text-5xl">24h</div>
+            <div className="text-gold font-display font-black text-4xl md:text-5xl">
+              <NumberTicker value={24} suffix="h" />
+            </div>
             <div className="text-muted-foreground text-[10px] font-mono uppercase tracking-[0.3em] mt-2">Build Window</div>
           </div>
           <div className="text-center">
-            <div className="text-gold font-display font-black text-4xl md:text-5xl">₹50K+</div>
+            <div className="text-gold font-display font-black text-4xl md:text-5xl">
+              <NumberTicker value={50} prefix="₹" suffix="K+" />
+            </div>
             <div className="text-muted-foreground text-[10px] font-mono uppercase tracking-[0.3em] mt-2">Prize Pool</div>
           </div>
         </motion.div>

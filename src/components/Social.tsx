@@ -41,20 +41,30 @@ const Socials = () => {
 
             return (
               <motion.a
-                key={item.name}
+                key={`${item.name}-${i}`}
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
                 viewport={{ once: true }}
-                className="group flex items-center gap-3 px-6 py-3 border border-gold/30 text-foreground/80 hover:text-gold hover:border-gold transition-all"
+                className="group flex flex-col items-center justify-center gap-4 w-40 h-32 border border-gold/20 bg-gold/[0.02] text-foreground/70 hover:text-gold hover:border-gold/50 hover:bg-gold/[0.05] transition-all duration-300 rounded-sm relative overflow-hidden"
               >
-                <Icon className="w-5 h-5" />
-                <span className="text-sm font-display uppercase tracking-wider">
+                {/* Subtle background glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10 p-3 rounded-full bg-gold/5 border border-gold/10 group-hover:border-gold/30 group-hover:bg-gold/10 transition-colors">
+                  <Icon className="w-6 h-6" />
+                </div>
+                
+                <span className="relative z-10 text-[11px] font-display font-bold uppercase tracking-[0.15em] text-center px-2">
                   {item.name}
                 </span>
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gold group-hover:w-full transition-all duration-500" />
               </motion.a>
             );
           })}

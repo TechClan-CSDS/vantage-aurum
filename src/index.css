@@ -85,11 +85,11 @@
   }
 
   .glow-gold {
-    box-shadow: none;
+    box-shadow: 0 0 20px rgba(212,175,55,0.3), 0 0 40px rgba(212,175,55,0.1);
   }
 
   .glow-gold-sm {
-    box-shadow: none;
+    box-shadow: 0 0 10px rgba(212,175,55,0.25);
   }
 }
 
@@ -127,8 +127,20 @@ nav {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-html {
-  scroll-padding-top: 80px;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0804;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212,175,55,0.35);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212,175,55,0.6);
 }

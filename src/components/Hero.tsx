@@ -2,75 +2,66 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.png";
 import devfolioLogo from "./../assets/Devfolio_Logo.png";
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Vortex } from "./Vortex";
 
 /* ---------------------------
    Static Binary Background
 --------------------------- */
 
 const StaticBinaryRain = () => {
-  const grid = useMemo(() => {
-    // Determine screen size once, but add generous padding to cols/rows
-    // so it over-renders off-screen, preventing any blank gaps on the right/bottom
-    // if the browser calculates width tightly or if zoomed.
-    const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920;
-    const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 1080;
-    
+  const [svgUrl, setSvgUrl] = useState("");
+
+  useEffect(() => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Restore original size as requested (12px)
     const cellWidth = 14;
     const cellHeight = 18;
+    const fontSize = "12px";
 
-    const cols = Math.ceil(screenWidth / cellWidth) + 15; 
-    const rows = Math.ceil(screenHeight / cellHeight) + 10;
+    const cols = Math.ceil(width / cellWidth);
+    const rows = Math.ceil(height / cellHeight);
 
-    return Array.from({ length: rows }, (_, r) => {
+    let svgStr = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">`;
+    svgStr += `<style>text { font-family: monospace; font-size: ${fontSize}; }</style>`;
+    
+    for (let r = 0; r < rows; r++) {
       const rowProgress = r / rows;
       const rowAlpha = Math.max(0, 0.16 - rowProgress * 0.16);
 
-      return Array.from({ length: cols }, () => ({
-        bit: Math.random() > 0.5 ? "1" : "0",
-        alpha: rowAlpha * (0.85 + Math.random() * 0.15),
-      }));
-    });
+      for (let c = 0; c < cols; c++) {
+        const bit = Math.random() > 0.5 ? "1" : "0";
+        const alpha = rowAlpha * (0.85 + Math.random() * 0.15);
+        if (alpha > 0.01) {
+          svgStr += `<text x="${c * cellWidth + cellWidth / 2}" y="${r * cellHeight + cellHeight / 2}" fill="rgba(180, 148, 28, ${alpha.toFixed(3)})" text-anchor="middle" dominant-baseline="central">${bit}</text>`;
+        }
+      }
+    }
+    svgStr += `</svg>`;
+    
+    // Safely encode for data URI
+    const encoded = btoa(svgStr);
+    setSvgUrl(`data:image/svg+xml;base64,${encoded}`);
   }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+      {svgUrl && (
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${svgUrl})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "top center",
+          }}
+        />
+      )}
       <div
+        className="absolute inset-0"
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "2px",
-          padding: "6px 10px",
-          fontFamily: "monospace",
-          fontSize: "12px",
-          lineHeight: "1.4",
-          letterSpacing: "0.06em",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        {grid.map((row, r) => (
-          <div key={r} style={{ display: "flex", gap: "6px" }}>
-            {row.map((cell, c) => (
-              <span
-                key={c}
-                style={{
-                  color: `rgba(180,148,28,${cell.alpha})`,
-                }}
-              >
-                {cell.bit}
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, transparent 45%, rgba(10,8,4,0.75) 70%, #0a0804 90%)",
+          background: "linear-gradient(to bottom, transparent 45%, rgba(10,8,4,0.75) 70%, #0a0804 90%)",
         }}
       />
     </div>
@@ -201,18 +192,26 @@ const NumberTicker = ({ value, suffix = "", prefix = "" }: { value: number; suff
 const Hero = () => {
   const statsRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) setIsVisible(true);
     }, { threshold: 0.1 });
     if (statsRef.current) observer.observe(statsRef.current);
-    return () => observer.disconnect();
+    
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      observer.disconnect();
+    };
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-20 bg-[#0a0804]">
-
+    <section className="relative flex flex-col items-center justify-start overflow-hidden px-4 pt-20 md:pt-20 pb-16">
       {/* Static Binary Pattern */}
       <StaticBinaryRain />
 
@@ -248,12 +247,32 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-10"
+          className="relative mb-10 w-full flex items-center justify-center max-w-5xl mx-auto min-h-[15rem] md:min-h-[20rem]"
         >
+          {/* Vortex Background Map */}
+          <div 
+            className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center -m-20"
+            style={{
+              maskImage: "radial-gradient(ellipse at center, black 18%, transparent 55%)",
+              WebkitMaskImage: "radial-gradient(ellipse at center, black 18%, transparent 55%)"
+            }}
+          >
+            <Vortex
+              backgroundColor="transparent"
+              baseHue={30} // Gold/Yellow hue range
+              rangeHue={20} // Restrict variance to stay in gold/yellow
+              particleCount={isMobile ? 150 : 400}
+              baseSpeed={0.0}
+              rangeSpeed={1}
+              baseRadius={1}
+              rangeRadius={2}
+            />
+          </div>
+
           <img
             src={aurumLogo}
             alt="Aurum"
-            className="w-[85%] sm:w-[24rem] md:w-[30rem] lg:w-[38rem] mx-auto filter drop-shadow-[0_0_40px_rgba(212,175,55,0.1)]"
+            className="relative z-10 w-[85%] sm:w-[24rem] md:w-[30rem] lg:w-[38rem] mx-auto filter drop-shadow-[0_0_40px_rgba(212,175,55,0.1)]"
           />
         </motion.div>
 

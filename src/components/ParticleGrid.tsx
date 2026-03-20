@@ -41,8 +41,8 @@ const ParticleGrid = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
           const maxDist = 150;
           const influence = Math.max(0, 1 - dist / maxDist);
-          const size = 1 + influence * 3;
-          const gold = `rgba(212, 175, 55, ${0.08 + influence * 0.6})`;
+          const size = 1 + influence * 2.92;
+          const gold = `rgba(212, 175, 55, ${0.06 + influence * 0.57})`;
           
           ctx.beginPath();
           ctx.arc(x, y, size, 0, Math.PI * 2);
@@ -62,7 +62,7 @@ const ParticleGrid = () => {
                   ctx.beginPath();
                   ctx.moveTo(x, y);
                   ctx.lineTo(nx, ny);
-                  ctx.strokeStyle = `rgba(212, 175, 55, ${influence * 0.15})`;
+                  ctx.strokeStyle = `rgba(212, 175, 55, ${influence * 0.12})`;
                   ctx.lineWidth = 0.5;
                   ctx.stroke();
                 }
@@ -87,9 +87,10 @@ const ParticleGrid = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 z-0 pointer-events-none hidden md:block"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.535 }}
     />
   );
 };
 
 export default ParticleGrid;
+

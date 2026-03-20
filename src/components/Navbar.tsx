@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import aurum_small from "@/assets/aurum-small.png";
@@ -8,20 +8,18 @@ const links = ["Home", "Tracks", "Schedule", "Venue", "Connect"];
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("Home");
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
-  /* ---- Scroll progress + scrolled state ---- */
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
-      setScrolled(scrollTop > 20);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  /* ---- Framer Motion Scroll Integration ---- */
+  const { scrollY, scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const isScrolled = latest > 20;
+    if (isScrolled !== scrolled) {
+      setScrolled(isScrolled);
+    }
+  });
 
   /* ---- Active section tracker via scroll spy ---- */
   const handleClick = (item: string) => {
@@ -98,11 +96,10 @@ const Navbar = () => {
         <motion.div
           className="h-full origin-left"
           style={{
-            width: `${scrollProgress}%`,
+            scaleX,
             background: "linear-gradient(90deg, #b4941c, #d4af37, #f0d060)",
             boxShadow: "0 0 8px rgba(212,175,55,0.7)",
           }}
-          transition={{ ease: "linear" }}
         />
       </div>
 

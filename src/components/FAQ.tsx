@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 const faqs = [
   {
@@ -59,16 +61,11 @@ const FAQ = () => {
   return (
     <section id="faq" className="py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
-            Frequently Asked <span className="text-gradient-gold">Questions</span>
+        <SectionReveal className="text-center mb-10 md:mb-16">
+          <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight flex flex-wrap justify-center gap-x-3 md:gap-x-4">
+            <WordReveal text="Frequently Asked Questions" className="text-foreground [&>span:last-child]:text-gradient-gold" />
           </h2>
-        </motion.div>
+        </SectionReveal>
 
         <div className="space-y-3">
           {faqs.map((faq, i) => {

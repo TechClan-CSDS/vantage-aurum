@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Utensils, Code2, Mic2, Coffee, Trophy, Users } from "lucide-react";
+import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 /* ---- Data ---- */
 type EventType = "hack" | "meal" | "ceremony" | "mentor" | "snack";
@@ -99,21 +101,23 @@ const Schedule = () => {
   const [activeDay, setActiveDay] = useState(0);
 
   return (
-    <section id="schedule" className="schedule-premium py-24 px-4 bg-background text-foreground">
+    <section id="schedule" className="schedule-premium py-12 md:py-24 px-4 bg-background text-foreground">
       <div className="max-w-3xl mx-auto">
 
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
+        <SectionReveal className="text-center mb-14">
           <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
-            Event <span className="text-gradient-gold">Schedule</span>
+            <WordReveal text="Event" className="text-foreground" />{" "}
+            <WordReveal text="Schedule" className="text-gradient-gold" delay={0.15} />
           </h2>
-          <p className="text-sm text-muted-foreground font-mono mt-4">24-hour build window · April 11–12 '26</p>
-        </motion.div>
+          <motion.p
+            className="text-sm text-muted-foreground font-mono mt-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >24-hour build window · April 11–12 '26</motion.p>
+        </SectionReveal>
 
         {/* Day Tab Switcher */}
         <div className="flex justify-center mb-12">

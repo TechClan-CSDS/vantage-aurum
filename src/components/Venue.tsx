@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Navigation, Map } from "lucide-react";
+import { SectionReveal } from "./SectionReveal";
+import { WordReveal } from "./WordReveal";
 
 const Venue = () => {
   return (
@@ -17,9 +19,12 @@ const Venue = () => {
           <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-gold/5 border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.05)]">
             <Map className="w-5 h-5 text-gold" />
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
-            Event <span className="text-gradient-gold">Venue</span>
-          </h2>
+          <SectionReveal>
+            <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
+              <WordReveal text="Event" className="text-foreground" />{" "}
+              <WordReveal text="Venue" className="text-gradient-gold" delay={0.15} />
+            </h2>
+          </SectionReveal>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">

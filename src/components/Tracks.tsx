@@ -101,7 +101,8 @@ const Tracks = () => {
                 }}
                 className={`group relative p-8 md:p-10 overflow-hidden bg-transparent
                   hover:bg-gold/[0.02] transition-colors duration-500
-                  ${i < 2 ? "border-b border-gold/20" : ""}
+                  ${i < tracks.length - 1 ? "border-b border-gold/20" : ""}
+                  ${i >= 2 ? "md:border-b-0" : ""}
                   ${i % 2 === 0 ? "md:border-r border-gold/20" : ""}`}
               >
                 {/* Techy corner L-brackets */}

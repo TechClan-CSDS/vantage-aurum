@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import aurum_small from "@/assets/aurum-small.png";
+import aurum_small from "@/assets/aurum-small.webp";
 
 const links = ["Home", "Tracks", "Schedule", "Venue", "Connect"];
 

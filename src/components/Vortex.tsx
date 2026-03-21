@@ -15,12 +15,16 @@ interface VortexProps {
   baseRadius?: number;
   rangeRadius?: number;
   rangeHue?: number;
+  saturation?: number;
+  lightness?: number;
+  alphaMultiplier?: number;
   backgroundColor?: string;
 }
 
 export const Vortex = (props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef(null);
+  const animationFrameRef = useRef<number | null>(null);
   const particleCount = props.particleCount || 700;
   const particlePropCount = 9;
   const particlePropsLength = particleCount * particlePropCount;
@@ -33,6 +37,9 @@ export const Vortex = (props: VortexProps) => {
   const rangeRadius = props.rangeRadius || 2;
   const baseHue = props.baseHue || 220;
   const rangeHue = props.rangeHue || 100;
+  const saturation = props.saturation ?? 100;
+  const lightness = props.lightness ?? 60;
+  const alphaMultiplier = props.alphaMultiplier ?? 0.45;
   const noiseSteps = 3;
   const xOff = 0.00125;
   const yOff = 0.00125;
@@ -110,7 +117,7 @@ export const Vortex = (props: VortexProps) => {
     renderGlow(canvas, ctx);
     renderToScreen(canvas, ctx);
 
-    window.requestAnimationFrame(() => draw(canvas, ctx));
+    animationFrameRef.current = window.requestAnimationFrame(() => draw(canvas, ctx));
   };
 
   const drawParticles = (ctx: CanvasRenderingContext2D) => {
@@ -173,7 +180,7 @@ export const Vortex = (props: VortexProps) => {
     ctx.save();
     ctx.lineCap = "round";
     ctx.lineWidth = radius;
-    ctx.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl) * 0.45})`;
+    ctx.strokeStyle = `hsla(${hue},${saturation}%,${lightness}%,${fadeInOut(life, ttl) * alphaMultiplier})`;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x2, y2);
@@ -228,13 +235,22 @@ export const Vortex = (props: VortexProps) => {
 
   useEffect(() => {
     setup();
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext("2d");
       if (canvas && ctx) {
         resize(canvas, ctx);
       }
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   return (

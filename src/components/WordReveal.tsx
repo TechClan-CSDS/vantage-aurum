@@ -5,6 +5,7 @@ interface WordRevealProps {
   text: string;
   className?: string;
   delay?: number;
+  stagger?: number;
   /** "word" splits by spaces, "char" splits letter-by-letter */
   splitBy?: "word" | "char";
 }
@@ -17,6 +18,7 @@ export function WordReveal({
   text,
   className = "",
   delay = 0,
+  stagger,
   splitBy = "word",
 }: WordRevealProps) {
   const ref = useRef(null);
@@ -28,7 +30,7 @@ export function WordReveal({
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: splitBy === "char" ? 0.025 : 0.09,
+        staggerChildren: stagger ?? (splitBy === "char" ? 0.025 : 0.09),
         delayChildren: delay,
       },
     },

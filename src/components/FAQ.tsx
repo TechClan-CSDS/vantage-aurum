@@ -63,7 +63,7 @@ const FAQ = () => {
       <div className="max-w-3xl mx-auto">
         <SectionReveal className="text-center mb-10 md:mb-16">
           <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight flex flex-wrap justify-center gap-x-3 md:gap-x-4">
-            <WordReveal text="Frequently Asked Questions" className="text-foreground [&>span:last-child]:text-gradient-gold" />
+            <WordReveal text="Frequently Asked Questions" className="text-foreground [&>span:last-child]:text-gradient-gold" stagger={0} />
           </h2>
         </SectionReveal>
 

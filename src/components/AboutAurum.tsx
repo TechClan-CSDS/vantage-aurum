@@ -1,8 +1,6 @@
 import { SectionReveal } from "./SectionReveal";
 import { WordReveal } from "./WordReveal";
-import GlitchText from "./GlitchText";
 import { motion } from "framer-motion";
-import TerminalReveal from "./TerminalReveal";
 
 const AboutAurum = () => {
   return (
@@ -36,16 +34,6 @@ const AboutAurum = () => {
             </p>
           </motion.div>
 
-          <TerminalReveal 
-            className="md:mx-auto max-w-2xl mt-8"
-            lines={[
-              "Initializing hackathon environment...",
-              "Scanning for AI agent-driven project ideas...",
-              "Network status: CONNECTED at +100Gbps",
-              "Build Window: 24 Hours [LOCKED]",
-              "Status: LOGGED_IN. ACCESS_GRANTED."
-            ]}
-          />
         </div>
       </SectionReveal>
     </section>

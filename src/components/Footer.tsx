@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
-import aurum_small from "@/assets/aurum-small.png";
+import aurum_small from "@/assets/aurum-small.webp";
 
 const Footer = () => {
   const scrollToTop = () => {

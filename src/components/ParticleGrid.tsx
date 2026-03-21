@@ -12,6 +12,12 @@ const ParticleGrid = () => {
     let animationId: number;
     let mouseX = -1000;
     let mouseY = -1000;
+    let lastFrameTime = 0;
+    const frameInterval = 1000 / 30;
+
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!mediaQuery.matches || reducedMotion.matches) return;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -26,7 +32,13 @@ const ParticleGrid = () => {
     };
     window.addEventListener("mousemove", handleMouse);
 
-    const draw = () => {
+    const draw = (timestamp: number) => {
+      if (timestamp - lastFrameTime < frameInterval) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrameTime = timestamp;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       const cols = Math.floor(canvas.width / 40);
@@ -74,7 +86,7 @@ const ParticleGrid = () => {
 
       animationId = requestAnimationFrame(draw);
     };
-    draw();
+    animationId = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(animationId);

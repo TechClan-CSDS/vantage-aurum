@@ -9,7 +9,6 @@ import Social from "@/components/Social";
 import AboutAurum from "@/components/AboutAurum";
 import Schedule from "@/components/Schedule";
 import Marquee from "@/components/Marquee";
-import { ParallaxSection } from "@/components/ParallaxSection";
 
 const Index = () => {
   return (

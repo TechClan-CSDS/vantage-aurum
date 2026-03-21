@@ -51,7 +51,7 @@ const Tracks = () => {
           viewport={{ once: true, margin: "-10% 0px" }}
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            visible: { opacity: 1 }
           }}
         >
           <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight flex items-center justify-center gap-4 flex-wrap">
@@ -63,7 +63,15 @@ const Tracks = () => {
             >
               Hackathon
             </motion.span>
-            <GlitchText text="Tracks" delay={0.4} className="text-gradient-gold" />
+            <motion.span
+              className="text-gradient-gold"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+              }}
+            >
+              <GlitchText text="Tracks" delay={0} className="text-gradient-gold" />
+            </motion.span>
           </h2>
           <motion.p
             className="text-sm text-gold/60 font-mono mt-5 max-w-xl mx-auto"

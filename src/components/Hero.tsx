@@ -1,6 +1,6 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import aurumLogo from "@/assets/aurum-logo.png";
+import aurumLogo from "@/assets/aurum-logo.webp";
 import devfolioLogo from "./../assets/Devfolio_Logo.png";
 import { useState, useEffect, useRef } from "react";
 import { Vortex } from "./Vortex";
@@ -254,18 +254,22 @@ const Hero = () => {
             className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center -m-20"
             style={{
               maskImage: "radial-gradient(ellipse at center, black 18%, transparent 55%)",
-              WebkitMaskImage: "radial-gradient(ellipse at center, black 18%, transparent 55%)"
+              WebkitMaskImage: "radial-gradient(ellipse at center, black 18%, transparent 55%)",
+              opacity: isMobile ? 0.68 : 1,
             }}
           >
             <Vortex
               backgroundColor="transparent"
               baseHue={30} // Gold/Yellow hue range
               rangeHue={20} // Restrict variance to stay in gold/yellow
-              particleCount={isMobile ? 150 : 400}
+              particleCount={isMobile ? 50 : 400}
               baseSpeed={0.0}
               rangeSpeed={1}
-              baseRadius={1}
-              rangeRadius={2}
+              baseRadius={isMobile ? 0.45 : 1}
+              rangeRadius={isMobile ? 0.9 : 2}
+              saturation={isMobile ? 95 : 100}
+              lightness={isMobile ? 55 : 60}
+              alphaMultiplier={isMobile ? 0.36 : 0.45}
             />
           </div>
 

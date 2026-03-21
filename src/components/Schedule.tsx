@@ -108,7 +108,7 @@ const Schedule = () => {
         <SectionReveal className="text-center mb-14">
           <h2 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tight">
             <WordReveal text="Event" className="text-foreground" />{" "}
-            <WordReveal text="Schedule" className="text-gradient-gold" delay={0.15} />
+            <WordReveal text="Schedule" className="text-gradient-gold" />
           </h2>
           <motion.p
             className="text-sm text-muted-foreground font-mono mt-4"

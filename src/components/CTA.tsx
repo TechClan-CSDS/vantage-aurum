@@ -5,7 +5,7 @@ import { SectionReveal } from "./SectionReveal";
 import { WordReveal } from "./WordReveal";
 
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 36 }, (_, i) => ({
+  const paths = Array.from({ length: 30 }, (_, i) => ({
       id: i,
       d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
           380 - i * 5 * position
@@ -85,7 +85,7 @@ const CTA = () => {
             <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-foreground mb-4 leading-tight">
               <WordReveal text="Build something" />
               <br />
-              <WordReveal text="worth shipping." className="text-gradient-gold" delay={0.1} />
+              <WordReveal text="worth shipping." className="text-gradient-gold" />
             </h2>
           </SectionReveal>
 

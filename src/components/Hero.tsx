@@ -247,7 +247,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="relative mb-10 w-full flex items-center justify-center max-w-5xl mx-auto min-h-[15rem] md:min-h-[20rem]"
+          className="relative -mt-10 -mb-2 w-full flex items-center justify-center max-w-5xl mx-auto min-h-[15rem] md:min-h-[20rem]"
         >
           {/* Vortex Background Map */}
           <div 
@@ -285,7 +285,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-foreground/60 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-12"
+          className="text-foreground/60 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-6"
         >
           Build real systems in <span className="text-gold font-bold">24 hours.</span>
           <br />

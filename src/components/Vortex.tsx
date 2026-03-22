@@ -210,6 +210,7 @@ export const Vortex = (props: VortexProps) => {
     canvas: HTMLCanvasElement,
     ctx: CanvasRenderingContext2D
   ) => {
+    if (window.innerWidth < 768) return; // Disable expensive blur on mobile devices
     ctx.save();
     ctx.filter = "blur(8px) brightness(115%)";
     ctx.globalCompositeOperation = "lighter";

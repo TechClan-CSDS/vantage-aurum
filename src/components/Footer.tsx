@@ -32,6 +32,9 @@ const Footer = () => {
               <img 
                 src={aurum_small} 
                 alt="Aurum" 
+                width="200"
+                height="60"
+                loading="lazy"
                 className="h-10 md:h-12 w-auto opacity-90 hover:opacity-100 transition-all duration-300 drop-shadow-[0_0_15px_rgba(212,175,55,0.2)]" 
               />
             </button>

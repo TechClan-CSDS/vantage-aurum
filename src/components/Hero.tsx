@@ -276,6 +276,9 @@ const Hero = () => {
           <img
             src={aurumLogo}
             alt="Aurum"
+            width="608"
+            height="200"
+            loading="eager"
             className="relative z-10 w-[85%] sm:w-[24rem] md:w-[30rem] lg:w-[38rem] mx-auto filter drop-shadow-[0_0_40px_rgba(212,175,55,0.1)]"
           />
         </motion.div>
@@ -306,7 +309,7 @@ const Hero = () => {
              className="group relative flex items-center justify-center gap-3 px-6 sm:px-9 py-3 bg-gold text-black font-display font-bold text-xs sm:text-sm uppercase tracking-wider transition-all hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.45)] w-full sm:w-auto h-12 sm:min-w-[260px]"
            >
              Apply via
-             <img src={devfolioLogo} alt="" className="h-4 sm:h-5 w-auto" />
+             <img src={devfolioLogo} alt="" width="100" height="40" loading="lazy" className="h-4 sm:h-5 w-auto" />
              Devfolio
              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
            </a>

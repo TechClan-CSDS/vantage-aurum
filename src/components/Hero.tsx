@@ -118,42 +118,6 @@ const FlipCard = ({ value, label }: { value: string; label: string }) => {
   );
 };
 
-<<<<<<< Updated upstream
-const Countdown = () => {
-  const TARGET = new Date("2026-04-11T09:00:00");
-  const [time, setTime] = useState({ d: 0, h: 0, m: 0, s: 0 });
-
-  useEffect(() => {
-    const tick = () => {
-      const diff = TARGET.getTime() - Date.now();
-      if (diff <= 0) return;
-      setTime({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff % 86400000) / 3600000),
-        m: Math.floor((diff % 3600000) / 60000),
-        s: Math.floor((diff % 60000) / 1000),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const pad = (n: number) => String(n).padStart(2, "0");
-
-  return (
-    <div className="flex items-center gap-2 sm:gap-3">
-      <FlipCard value={pad(time.d)} label="Days" />
-      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
-      <FlipCard value={pad(time.h)} label="Hours" />
-      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
-      <FlipCard value={pad(time.m)} label="Mins" />
-      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
-      <FlipCard value={pad(time.s)} label="Secs" />
-    </div>
-  );
-};
-=======
 const ShimmerDivider = () => (
   <div className="relative flex items-center justify-center w-full max-w-xs mx-auto my-8">
     <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
@@ -193,7 +157,6 @@ const PostponementNotice = () => (
     </p>
   </motion.div>
 );
->>>>>>> Stashed changes
 
 /* ---------------------------
    Hero

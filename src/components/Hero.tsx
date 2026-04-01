@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.webp";
 import devfolioLogo from "./../assets/Devfolio_Logo.png";
@@ -71,52 +71,6 @@ const StaticBinaryRain = () => {
 /* ---------------------------
    Shimmer Divider
 --------------------------- */
-
-const ShimmerDivider = () => (
-  <div className="relative flex items-center justify-center w-full max-w-xs mx-auto my-8">
-    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-    <motion.div
-      animate={{ opacity: [0.4, 1, 0.4] }}
-      transition={{ duration: 2, repeat: Infinity }}
-      className="absolute w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_10px_#d4af37]"
-    />
-  </div>
-);
-
-/* ---------------------------
-   Flip Countdown Card
---------------------------- */
-
-const FlipCard = ({ value, label }: { value: string; label: string }) => {
-  return (
-    <div className="flex flex-col items-center gap-1.5 sm:gap-2">
-      <div
-        className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center overflow-hidden rounded-md"
-        style={{
-          background: "#0a0804",
-          border: "1px solid rgba(212,175,55,0.25)",
-          perspective: "1000px",
-        }}
-      >
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-black/50 z-10" />
-        <AnimatePresence mode="popLayout">
-          <motion.span
-            key={value}
-            initial={{ opacity: 0, rotateX: -90, y: 15 }}
-            animate={{ opacity: 1, rotateX: 0, y: 0 }}
-            exit={{ opacity: 0, rotateX: 90, y: -15 }}
-            transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
-            className="font-mono font-bold text-2xl sm:text-3xl md:text-4xl text-gold"
-            style={{ textShadow: "0 0 15px rgba(212,175,55,0.3)" }}
-          >
-            {value}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-      <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-gold/50">{label}</span>
-    </div>
-  );
-};
 
 const ShimmerDivider = () => (
   <div className="relative flex items-center justify-center w-full max-w-xs mx-auto my-8">
@@ -225,20 +179,13 @@ const Hero = () => {
 
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto">
 
-        {/* Date + Countdown */}
+        {/* Date + Postponement Notice */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <p className="text-gold font-display font-black tracking-[0.28em] text-lg md:text-xl">
-            APRIL 11–12 '26
-          </p>
-
-          <div className="mt-3 flex justify-center">
-            <Countdown />
-=======
           <div className="inline-flex items-center gap-4 px-7 py-2.5 border border-amber-500/40 bg-amber-950/20 rounded-full mb-8 shadow-[0_0_20px_rgba(212,175,55,0.05)] relative z-20">
             <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
             <span className="text-amber-400 font-display font-black tracking-[0.4em] text-xs md:text-sm uppercase">
@@ -249,7 +196,6 @@ const Hero = () => {
 
           <div className="flex justify-center">
             <PostponementNotice />
->>>>>>> Stashed changes
           </div>
         </motion.div>
 

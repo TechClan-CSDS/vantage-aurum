@@ -1,9 +1,8 @@
 const items = [
-  "AURUM",
-  "VANTAGE HACKATHON",
-  "24 HOURS",
-  "60 TEAMS",
-  "AI AGENTS",
+  "AURUM 26",
+  "DSCE BENGALURU",
+  "50K+ PRIZE POOL",
+  "24H BUILD WINDOW",
   "BUILD · SHIP · WIN",
   "AI AGENTS",
 ];

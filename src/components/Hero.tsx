@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.webp";
 import devfolioLogo from "./../assets/Devfolio_Logo.png";
@@ -118,6 +118,7 @@ const FlipCard = ({ value, label }: { value: string; label: string }) => {
   );
 };
 
+<<<<<<< Updated upstream
 const Countdown = () => {
   const TARGET = new Date("2026-04-11T09:00:00");
   const [time, setTime] = useState({ d: 0, h: 0, m: 0, s: 0 });
@@ -152,6 +153,47 @@ const Countdown = () => {
     </div>
   );
 };
+=======
+const ShimmerDivider = () => (
+  <div className="relative flex items-center justify-center w-full max-w-xs mx-auto my-8">
+    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+    <motion.div
+      animate={{ opacity: [0.4, 1, 0.4] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="absolute w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_10px_#d4af37]"
+    />
+  </div>
+);
+
+/* ---------------------------
+   Postponement Notice Banner
+--------------------------- */
+
+const PostponementNotice = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.2 }}
+    className="relative flex flex-col items-center gap-3 px-6 py-5 mx-auto max-w-lg border border-amber-500/40 bg-amber-950/30 backdrop-blur-sm rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.08)]"
+  >
+    {/* Pulsing warning dot */}
+    <div className="flex items-center gap-2.5">
+      <span className="relative flex h-2.5 w-2.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500" />
+      </span>
+      <span className="text-amber-400 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">
+        Event Postponed
+      </span>
+    </div>
+    <p className="text-foreground/70 font-mono text-xs sm:text-sm text-center leading-relaxed">
+      Due to <span className="text-amber-400 font-semibold">LPG shortage</span>, Aurum has been postponed.
+      <br />
+      A new date will be announced shortly. Stay tuned!
+    </p>
+  </motion.div>
+);
+>>>>>>> Stashed changes
 
 /* ---------------------------
    Hero
@@ -220,23 +262,31 @@ const Hero = () => {
 
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto">
 
-        {/* Date / Countdown */}
+        {/* Date + Countdown */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-6"
+          className="mb-10"
         >
-          <div className="inline-flex items-center gap-4 px-7 py-2.5 border border-gold/30 bg-background rounded-full mb-10 shadow-[0_0_20px_rgba(212,175,55,0.05)] relative z-20">
-            <div className="w-2 h-2 rounded-full bg-gold animate-pulse shadow-[0_0_8px_#d4af37]" />
-            <span className="text-gold font-display font-black tracking-[0.4em] text-xs md:text-sm uppercase">
-              April 11–12 '26
+          <p className="text-gold font-display font-black tracking-[0.28em] text-lg md:text-xl">
+            APRIL 11–12 '26
+          </p>
+
+          <div className="mt-3 flex justify-center">
+            <Countdown />
+=======
+          <div className="inline-flex items-center gap-4 px-7 py-2.5 border border-amber-500/40 bg-amber-950/20 rounded-full mb-8 shadow-[0_0_20px_rgba(212,175,55,0.05)] relative z-20">
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+            <span className="text-amber-400 font-display font-black tracking-[0.4em] text-xs md:text-sm uppercase">
+              Date: TBA
             </span>
-            <div className="w-2 h-2 rounded-full bg-gold animate-pulse shadow-[0_0_8px_#d4af37]" />
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
           </div>
 
           <div className="flex justify-center">
-            <Countdown />
+            <PostponementNotice />
+>>>>>>> Stashed changes
           </div>
         </motion.div>
 

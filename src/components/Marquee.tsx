@@ -1,6 +1,5 @@
 const items = [
-  "AURUM '26",
-  "APRIL 11–12",
+  "AURUM 26",
   "DSCE BENGALURU",
   "50K+ PRIZE POOL",
   "24H BUILD WINDOW",

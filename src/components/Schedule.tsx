@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Utensils, Code2, Mic2, Coffee, Trophy, Users } from "lucide-react";
+import { Utensils, Code2, Mic2, Coffee, Users } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
 import { WordReveal } from "./WordReveal";
 
@@ -22,7 +22,7 @@ interface DaySchedule {
 const schedule: DaySchedule[] = [
   {
     day: "Day 1",
-    date: "April 11",
+    date: "TBA",
     events: [
       { name: "Registration", time: "9:00 AM", type: "ceremony" },
       { name: "Opening Ceremony", time: "10:00 AM", type: "ceremony" },
@@ -36,7 +36,7 @@ const schedule: DaySchedule[] = [
   },
   {
     day: "Day 2",
-    date: "April 12",
+    date: "TBA",
     events: [
       { name: "Breakfast", time: "8:00 AM", type: "meal" },
       { name: "Judging Begins", time: "9:00 AM", type: "hack" },
@@ -116,7 +116,7 @@ const Schedule = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-          >24-hour build window · April 11–12 '26</motion.p>
+          >24-hour build window · Date TBA</motion.p>
         </SectionReveal>
 
         {/* Day Tab Switcher */}

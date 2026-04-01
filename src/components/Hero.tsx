@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import aurumLogo from "@/assets/aurum-logo.webp";
 import devfolioLogo from "./../assets/Devfolio_Logo.png";
@@ -84,74 +84,33 @@ const ShimmerDivider = () => (
 );
 
 /* ---------------------------
-   Flip Countdown Card
+   Postponement Notice Banner
 --------------------------- */
 
-const FlipCard = ({ value, label }: { value: string; label: string }) => {
-  return (
-    <div className="flex flex-col items-center gap-1.5 sm:gap-2">
-      <div
-        className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center overflow-hidden rounded-md"
-        style={{
-          background: "#0a0804",
-          border: "1px solid rgba(212,175,55,0.25)",
-          perspective: "1000px",
-        }}
-      >
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-black/50 z-10" />
-        <AnimatePresence mode="popLayout">
-          <motion.span
-            key={value}
-            initial={{ opacity: 0, rotateX: -90, y: 15 }}
-            animate={{ opacity: 1, rotateX: 0, y: 0 }}
-            exit={{ opacity: 0, rotateX: 90, y: -15 }}
-            transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
-            className="font-mono font-bold text-2xl sm:text-3xl md:text-4xl text-gold"
-            style={{ textShadow: "0 0 15px rgba(212,175,55,0.3)" }}
-          >
-            {value}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-      <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-gold/50">{label}</span>
+const PostponementNotice = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.2 }}
+    className="relative flex flex-col items-center gap-3 px-6 py-5 mx-auto max-w-lg border border-amber-500/40 bg-amber-950/30 backdrop-blur-sm rounded-sm shadow-[0_0_30px_rgba(212,175,55,0.08)]"
+  >
+    {/* Pulsing warning dot */}
+    <div className="flex items-center gap-2.5">
+      <span className="relative flex h-2.5 w-2.5">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500" />
+      </span>
+      <span className="text-amber-400 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">
+        Event Postponed
+      </span>
     </div>
-  );
-};
-
-const Countdown = () => {
-  const TARGET = new Date("2026-04-11T09:00:00");
-  const [time, setTime] = useState({ d: 0, h: 0, m: 0, s: 0 });
-
-  useEffect(() => {
-    const tick = () => {
-      const diff = TARGET.getTime() - Date.now();
-      if (diff <= 0) return;
-      setTime({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff % 86400000) / 3600000),
-        m: Math.floor((diff % 3600000) / 60000),
-        s: Math.floor((diff % 60000) / 1000),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  const pad = (n: number) => String(n).padStart(2, "0");
-
-  return (
-    <div className="flex items-center gap-2 sm:gap-3">
-      <FlipCard value={pad(time.d)} label="Days" />
-      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
-      <FlipCard value={pad(time.h)} label="Hours" />
-      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
-      <FlipCard value={pad(time.m)} label="Mins" />
-      <span className="text-gold/30 font-mono text-xl sm:text-2xl mb-5 sm:mb-6">:</span>
-      <FlipCard value={pad(time.s)} label="Secs" />
-    </div>
-  );
-};
+    <p className="text-foreground/70 font-mono text-xs sm:text-sm text-center leading-relaxed">
+      Due to <span className="text-amber-400 font-semibold">LPG shortage</span>, Aurum has been postponed.
+      <br />
+      A new date will be announced shortly. Stay tuned!
+    </p>
+  </motion.div>
+);
 
 /* ---------------------------
    Hero
@@ -220,23 +179,23 @@ const Hero = () => {
 
       <div className="relative z-10 text-center w-full max-w-5xl mx-auto">
 
-        {/* Date / Countdown */}
+        {/* Date + Postponement Notice */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-6"
+          className="mb-10"
         >
-          <div className="inline-flex items-center gap-4 px-7 py-2.5 border border-gold/30 bg-background rounded-full mb-10 shadow-[0_0_20px_rgba(212,175,55,0.05)] relative z-20">
-            <div className="w-2 h-2 rounded-full bg-gold animate-pulse shadow-[0_0_8px_#d4af37]" />
-            <span className="text-gold font-display font-black tracking-[0.4em] text-xs md:text-sm uppercase">
-              April 11–12 '26
+          <div className="inline-flex items-center gap-4 px-7 py-2.5 border border-amber-500/40 bg-amber-950/20 rounded-full mb-8 shadow-[0_0_20px_rgba(212,175,55,0.05)] relative z-20">
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+            <span className="text-amber-400 font-display font-black tracking-[0.4em] text-xs md:text-sm uppercase">
+              Date: TBA
             </span>
-            <div className="w-2 h-2 rounded-full bg-gold animate-pulse shadow-[0_0_8px_#d4af37]" />
+            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
           </div>
 
           <div className="flex justify-center">
-            <Countdown />
+            <PostponementNotice />
           </div>
         </motion.div>
 
